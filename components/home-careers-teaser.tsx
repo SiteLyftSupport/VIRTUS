@@ -23,7 +23,7 @@ export function HomeCareersTeaser() {
             className="lg:col-span-7"
           >
             <SectionEyebrow number="04" label="Careers" />
-            <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
+            <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
               Cleared, senior, and
               <span className="block text-[#d4ae5b]">on the mission.</span>
             </h2>

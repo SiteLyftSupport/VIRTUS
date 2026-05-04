@@ -26,7 +26,7 @@ export function QuickFacts() {
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         <div className="max-w-2xl">
           <SectionEyebrow number="00" label="Quick Facts" />
-          <h2 className="font-[var(--font-tactical)] text-balance text-3xl font-bold leading-[1.05] tracking-tight sm:text-4xl lg:text-5xl">
+          <h2 className="font-[var(--font-tactical)] text-balance text-3xl font-medium leading-[1.05] tracking-tight sm:text-4xl lg:text-5xl">
             The data sheet at a glance.
           </h2>
         </div>
