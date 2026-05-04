@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #07080b;
+  --color-bg-elev: #0d1015;
+  --color-ink: #f5f4ef;
+  --color-ink-mute: #a8a39a;
+  --color-line: #1e2128;
+  --color-crimson: #a3132a;
+  --color-crimson-deep: #6b0a18;
+  --color-crimson-bright: #e21a3a;
+  --color-gold: #d4ae5b;
+  --color-gold-bright: #f0cc7a;
+  --color-gold-deep: #8c7332;
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html, body {
+  background: #07080b;
+  color: #f5f4ef;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: #a3132a;
+  color: #f5f4ef;
+}
+
+/* Subtle grid backdrop used on multiple sections */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(212, 174, 91, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212, 174, 91, 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.bg-grid-fine {
+  background-image:
+    linear-gradient(rgba(245, 244, 239, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 244, 239, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.radial-spotlight {
+  background: radial-gradient(60% 60% at 50% 0%, rgba(163, 19, 42, 0.35) 0%, rgba(7, 8, 11, 0) 70%);
+}
+
+.gold-divider {
+  background: linear-gradient(90deg, transparent, #d4ae5b 50%, transparent);
+  height: 1px;
+}
+
+.text-balance { text-wrap: balance; }
+.text-pretty  { text-wrap: pretty; }
+
+.circuitry {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(212, 174, 91, 0.18) 1px, transparent 1px),
+    linear-gradient(rgba(212, 174, 91, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212, 174, 91, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px, 24px 24px, 24px 24px;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee { animation: marquee 40s linear infinite; }
+
+.hairline { box-shadow: inset 0 0 0 1px rgba(245, 244, 239, 0.06); }
+
+.gold-border { position: relative; }
+.gold-border::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(212, 174, 91, 0.35);
+  pointer-events: none;
+}
