@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { VirtusWordmark } from "./brand";
+import { SITE } from "@/lib/site";
+import { SERVICES } from "@/lib/services";
 
 export function SiteFooter() {
   return (
@@ -17,30 +19,29 @@ export function SiteFooter() {
             </p>
             <div className="mt-8 inline-flex flex-wrap items-center gap-3">
               <Badge>SDVOSB · CVE-Certified</Badge>
+              <Badge>CMMC 2.0 Certified</Badge>
               <Badge>SAM.gov Registered</Badge>
-              <Badge>Cleared Workforce</Badge>
+            </div>
+            <div className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/10 bg-white/5 max-w-xs">
+              <FooterFact k="DUNS" v={SITE.duns} />
+              <FooterFact k="CAGE" v={SITE.cage} />
             </div>
           </div>
 
           <div className="grid gap-10 sm:grid-cols-3 lg:col-span-7">
             <FooterCol
-              title="Capabilities"
-              items={[
-                ["Systems Engineering & Integration", "#cap-sei"],
-                ["Program Management", "#cap-pm"],
-                ["Subject Matter Expertise", "#cap-sme"],
-                ["Information Systems", "#cap-is"],
-                ["Mission Operations", "#cap-ops"],
-              ]}
+              title="Services"
+              items={SERVICES.slice(0, 6).map(
+                (s) => [s.name, `/services#${s.slug}`] as [string, string],
+              )}
             />
             <FooterCol
               title="Company"
               items={[
-                ["About Virtus", "#about"],
-                ["Our Team", "#team"],
-                ["Past Performance", "#past-performance"],
-                ["Careers", "#careers"],
-                ["Contact", "#contact"],
+                ["About", "/about"],
+                ["Our Team", "/team"],
+                ["Careers", "/careers"],
+                ["Contact", "/contact"],
               ]}
             />
             <div>
@@ -51,24 +52,24 @@ export function SiteFooter() {
                 <li className="flex items-start gap-3">
                   <MapPin className="mt-0.5 h-4 w-4 text-[#d4ae5b]" />
                   <span>
-                    Northern Virginia
+                    {SITE.hq}
                     <br />
-                    Washington, D.C. Metro
+                    {SITE.hqRegion}
                   </span>
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone className="h-4 w-4 text-[#d4ae5b]" />
-                  <a href="tel:+17038688653" className="hover:text-[#f5f4ef]">
-                    (703) 868-8653
+                  <a href={`tel:${SITE.ownerPhoneTel}`} className="hover:text-[#f5f4ef]">
+                    {SITE.ownerPhone}
                   </a>
                 </li>
                 <li className="flex items-center gap-3">
                   <Mail className="h-4 w-4 text-[#d4ae5b]" />
                   <a
-                    href="mailto:info@virtusts.com"
+                    href={`mailto:${SITE.generalEmail}`}
                     className="hover:text-[#f5f4ef]"
                   >
-                    info@virtusts.com
+                    {SITE.generalEmail}
                   </a>
                 </li>
               </ul>
@@ -76,10 +77,20 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-white/5 pt-8 text-xs text-[#a8a39a] sm:flex-row sm:items-center">
+        <div className="mt-12 rounded-2xl border border-white/10 bg-white/[0.02] px-6 py-5 text-xs text-[#a8a39a]">
+          <span className="font-[var(--font-mono)] uppercase tracking-[0.22em] text-[#d4ae5b]">
+            EOE Statement —
+          </span>{" "}
+          Virtus TS is an Equal Opportunity Employer. We are committed to a workplace free of
+          discrimination on the basis of race, color, religion, sex, sexual orientation, gender
+          identity, national origin, age, disability, protected veteran status, or any other
+          characteristic protected by law.
+        </div>
+
+        <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-white/5 pt-8 text-xs text-[#a8a39a] sm:flex-row sm:items-center">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-[var(--font-mono)] tracking-wider">
             <span>© {new Date().getFullYear()} VIRTUS TECHNOLOGY SOLUTIONS, INC.</span>
-            <span className="text-[#d4ae5b]/70">VIRTUS · VINCIT · VERITAS</span>
+            <span className="text-[#d4ae5b]/70">{SITE.motto.toUpperCase()}</span>
           </div>
           <div className="flex items-center gap-6">
             <Link href="#" className="hover:text-[#f5f4ef]">Privacy</Link>
@@ -107,12 +118,25 @@ function FooterCol({
       <ul className="space-y-3 text-sm text-[#a8a39a]">
         {items.map(([label, href]) => (
           <li key={label}>
-            <a href={href} className="transition-colors hover:text-[#f5f4ef]">
+            <Link href={href} className="transition-colors hover:text-[#f5f4ef]">
               {label}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
+    </div>
+  );
+}
+
+function FooterFact({ k, v }: { k: string; v: string }) {
+  return (
+    <div className="bg-[#07080b]/70 px-4 py-3">
+      <div className="font-[var(--font-mono)] text-[9px] uppercase tracking-[0.22em] text-[#a8a39a]">
+        {k}
+      </div>
+      <div className="mt-0.5 font-[var(--font-mono)] text-[12px] tracking-wider text-[#f5f4ef]">
+        {v}
+      </div>
     </div>
   );
 }

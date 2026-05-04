@@ -53,7 +53,7 @@ export function About() {
               <Fact k="Established" v="2010" />
               <Fact k="Designation" v="SDVOSB · CVE" />
               <Fact k="Customer Set" v="DoD · IC · Federal" />
-              <Fact k="HQ" v="Northern Virginia" />
+              <Fact k="HQ" v="McLean, Virginia" />
             </dl>
           </motion.div>
 

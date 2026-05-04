@@ -81,7 +81,7 @@ export function Contact() {
               <ContactRow
                 icon={<MapPin className="h-4 w-4" />}
                 label="Headquarters"
-                value="Northern Virginia · Washington, D.C. Metro"
+                value="McLean, Virginia · Washington, D.C. Metro"
               />
             </ul>
           </motion.div>
