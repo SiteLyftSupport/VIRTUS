@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import { About } from "@/components/about";
-import { DoctrineBand } from "@/components/doctrine-band";
-import { WhyVirtus } from "@/components/why-virtus";
+import {
+  AboutStory,
+  FounderStatement,
+  Timeline,
+  FoundingPrinciples,
+  AboutCTA,
+} from "@/components/about-story";
 import { QuickFacts } from "@/components/quick-facts";
 import { CertsBand } from "@/components/certs-band";
-import { PastPerformance } from "@/components/past-performance";
 
 export const metadata: Metadata = {
   title: "About",
@@ -14,13 +17,14 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="pt-24">
-      <About />
+    <>
+      <AboutStory />
+      <FounderStatement />
+      <Timeline />
+      <FoundingPrinciples />
       <QuickFacts />
-      <DoctrineBand />
-      <WhyVirtus />
-      <PastPerformance />
       <CertsBand />
-    </div>
+      <AboutCTA />
+    </>
   );
 }

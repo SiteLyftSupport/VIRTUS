@@ -1,6 +1,5 @@
 import { Hero } from "@/components/hero";
-import { About } from "@/components/about";
-import { DoctrineBand } from "@/components/doctrine-band";
+import { HomeAboutTeaser } from "@/components/home-about-teaser";
 import { HomeServicesTeaser } from "@/components/home-services-teaser";
 import { HomeTeamTeaser } from "@/components/home-team-teaser";
 import { HomeCareersTeaser } from "@/components/home-careers-teaser";
@@ -12,8 +11,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <About />
-      <DoctrineBand />
+      <HomeAboutTeaser />
       <HomeServicesTeaser />
       <HomeTeamTeaser />
       <HomeCareersTeaser />

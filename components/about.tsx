@@ -25,12 +25,12 @@ export function About() {
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: false, margin: "-100px" }}
             transition={{ duration: 0.7, ease }}
             className="flex flex-col lg:col-span-5"
           >
             <SectionEyebrow number="01" label="About Virtus" />
-            <h2 className="font-[var(--font-display)] text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+            <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-4xl">
               Founded by intelligence and defense professionals.
               <span className="block text-[#d4ae5b]"> Built for the mission.</span>
             </h2>
@@ -61,7 +61,7 @@ export function About() {
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: false, margin: "-100px" }}
             transition={{ duration: 0.8, ease, delay: 0.1 }}
             className="flex flex-col lg:col-span-7"
           >
@@ -84,7 +84,7 @@ export function About() {
                 <div className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.28em] text-[#d4ae5b]">
                   CVE-Certified · SAM Registered · Cleared Workforce
                 </div>
-                <div className="font-[var(--font-display)] text-2xl text-[#f5f4ef]">
+                <div className="font-[var(--font-tactical)] text-2xl text-[#f5f4ef]">
                   Virtus · Vincit · Veritas
                 </div>
               </div>
@@ -101,7 +101,7 @@ export function About() {
                     className="group flex flex-col rounded-xl border border-white/10 bg-white/[0.02] p-4 transition-colors hover:border-[#d4ae5b]/30 hover:bg-[#d4ae5b]/[0.04]"
                   >
                     <Icon className="h-5 w-5 text-[#d4ae5b] transition-transform group-hover:scale-110" />
-                    <div className="mt-3 font-[var(--font-display)] text-sm font-semibold tracking-wider text-[#f5f4ef]">
+                    <div className="mt-3 font-[var(--font-tactical)] text-sm font-semibold tracking-wider text-[#f5f4ef]">
                       {label.toUpperCase()}
                     </div>
                     <div className="mt-1 text-xs leading-relaxed text-[#a8a39a]">
@@ -124,7 +124,7 @@ function Fact({ k, v }: { k: string; v: string }) {
       <dt className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] text-[#a8a39a]">
         {k}
       </dt>
-      <dd className="mt-1 font-[var(--font-display)] text-base font-semibold text-[#f5f4ef]">
+      <dd className="mt-1 font-[var(--font-tactical)] text-base font-semibold text-[#f5f4ef]">
         {v}
       </dd>
     </div>

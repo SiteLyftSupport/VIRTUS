@@ -33,7 +33,7 @@ export function CertsBand() {
             <div className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.32em] text-[#d4ae5b]">
               Compliance · Trust
             </div>
-            <h3 className="mt-2 font-[var(--font-display)] text-2xl font-semibold tracking-tight text-[#f5f4ef] sm:text-3xl">
+            <h3 className="mt-2 font-[var(--font-tactical)] text-2xl font-semibold tracking-tight text-[#f5f4ef] sm:text-3xl">
               Built defensible. Audited continuously.
             </h3>
           </div>
@@ -50,7 +50,7 @@ export function CertsBand() {
               key={name}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: false, margin: "-80px" }}
               transition={{ duration: 0.5, ease, delay: i * 0.05 }}
               className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-6"
             >
@@ -58,7 +58,7 @@ export function CertsBand() {
                 <Icon className="h-5 w-5" />
               </span>
               <div>
-                <div className="font-[var(--font-display)] text-lg font-semibold text-[#f5f4ef]">
+                <div className="font-[var(--font-tactical)] text-lg font-semibold text-[#f5f4ef]">
                   {name}
                 </div>
                 <div className="mt-1 text-xs leading-relaxed text-[#a8a39a]">

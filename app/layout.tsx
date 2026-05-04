@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Cinzel, JetBrains_Mono } from "next/font/google";
+import { Inter, Audiowide, Oxanium, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -9,8 +9,21 @@ const sans = Inter({
   subsets: ["latin"],
 });
 
-const display = Cinzel({
+// Display: Audiowide — techy/military letterforms with the signature
+// horizontal grooves that mirror the printed VIRTUS wordmark. Single
+// weight only, but it reads as clearly bold and clearly tech.
+const display = Audiowide({
   variable: "--font-display",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+// Sub-display: Oxanium — futuristic / tech sans with a full weight range.
+// Used for every section h2 + sub-heading. Has real bold weights so
+// boldness renders consistently across browsers (Audiowide is single
+// weight, which forced synthetic bold and looked uneven).
+const subDisplay = Oxanium({
+  variable: "--font-tactical",
   subsets: ["latin"],
   weight: ["500", "600", "700", "800"],
 });
@@ -55,7 +68,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${sans.variable} ${display.variable} ${mono.variable} antialiased`}
+      className={`${sans.variable} ${display.variable} ${subDisplay.variable} ${mono.variable} antialiased`}
     >
       <body className="min-h-screen bg-[#07080b] text-[#f5f4ef]">
         <SiteHeader />

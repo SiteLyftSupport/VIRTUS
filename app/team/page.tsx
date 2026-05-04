@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Team } from "@/components/team";
+import { TeamCarousel } from "@/components/team-carousel";
 import { CertsBand } from "@/components/certs-band";
 
 export const metadata: Metadata = {
@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 
 export default function TeamPage() {
   return (
-    <div className="pt-24">
-      <Team />
+    <div className="pt-16">
+      <TeamCarousel />
       <CertsBand />
     </div>
   );

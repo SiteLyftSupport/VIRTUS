@@ -76,7 +76,7 @@ export default async function CareerPage({
               number={`Job · ${String(idx + 1).padStart(2, "0")}`}
               label="Open Position"
             />
-            <h1 className="font-[var(--font-display)] text-balance text-5xl font-semibold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
+            <h1 className="font-[var(--font-tactical)] text-balance text-5xl font-semibold leading-[1.02] tracking-tight sm:text-4xl lg:text-5xl">
               {career.title}
             </h1>
             <p className="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-[#a8a39a] sm:text-lg">
@@ -209,7 +209,7 @@ export default async function CareerPage({
                 <div className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-[#d4ae5b]">
                   Apply
                 </div>
-                <h2 className="mt-3 font-[var(--font-display)] text-3xl font-semibold tracking-tight text-[#f5f4ef] sm:text-4xl">
+                <h2 className="mt-3 font-[var(--font-tactical)] text-3xl font-semibold tracking-tight text-[#f5f4ef] sm:text-4xl">
                   Ready to step on?
                 </h2>
                 <p className="mt-4 max-w-xl text-sm leading-relaxed text-[#a8a39a]">
@@ -235,7 +235,7 @@ export default async function CareerPage({
                   </div>
                   <Link
                     href={`/careers/${next.slug}`}
-                    className="mt-2 inline-block font-[var(--font-display)] text-xl font-semibold text-[#f5f4ef] transition-colors hover:text-[#f0cc7a]"
+                    className="mt-2 inline-block font-[var(--font-tactical)] text-xl font-semibold text-[#f5f4ef] transition-colors hover:text-[#f0cc7a]"
                   >
                     {next.title} →
                   </Link>
@@ -275,7 +275,7 @@ function Section({
         <span className="h-px w-10 bg-[#d4ae5b]/40" />
         <span>{title}</span>
       </div>
-      <h2 className="mb-6 flex items-center gap-3 font-[var(--font-display)] text-3xl font-semibold tracking-tight text-[#f5f4ef]">
+      <h2 className="mb-6 flex items-center gap-3 font-[var(--font-tactical)] text-3xl font-semibold tracking-tight text-[#f5f4ef]">
         <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#d4ae5b]/30 bg-[#d4ae5b]/5 text-[#f0cc7a]">
           {icon}
         </span>
@@ -309,7 +309,7 @@ function Meta({
       <dt className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] text-[#a8a39a]">
         {label}
       </dt>
-      <dd className="mt-1.5 flex items-center gap-2 font-[var(--font-display)] text-base font-semibold text-[#f5f4ef]">
+      <dd className="mt-1.5 flex items-center gap-2 font-[var(--font-tactical)] text-base font-semibold text-[#f5f4ef]">
         {icon && <span className="text-[#d4ae5b]">{icon}</span>}
         {value}
       </dd>

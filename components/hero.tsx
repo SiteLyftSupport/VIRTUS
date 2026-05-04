@@ -1,96 +1,100 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Shield } from "lucide-react";
-import { media } from "@/lib/media";
-
-const HERO_IMG = media.heroPrimary;
-const HERO_VIDEO = media.heroVideo;
+import { HeroSignal } from "./hero-signal";
+import { Magnetic } from "./magnetic";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
+const STATS = [
+  { n: "14+", label: "Years on Mission" },
+  { n: "100%", label: "Cleared Workforce" },
+  { n: "DoD · IC", label: "Customer Set" },
+  { n: "SDVOSB", label: "CVE Certified" },
+];
+
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden">
-      {/* Background — video with image fallback */}
-      <div className="absolute inset-0">
-        <Image
-          src={HERO_IMG}
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover opacity-40"
-        />
-        <video
-          src={HERO_VIDEO}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-hidden
-          className="absolute inset-0 h-full w-full object-cover opacity-50"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#07080b]/40 via-[#07080b]/70 to-[#07080b]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#07080b] via-transparent to-[#07080b]/50" />
-        <div className="radial-spotlight absolute inset-0" />
-        <div className="bg-grid absolute inset-0 opacity-50" />
-      </div>
+    <>
+      <section className="relative isolate flex min-h-[760px] flex-col overflow-hidden bg-[#07080b] lg:h-[100svh]">
+        {/* Full-bleed signal mesh + gradient mask */}
+        <div className="absolute inset-0">
+          <HeroSignal />
+          {/* Left-side darken so the copy stays legible over the canvas (alphas reduced ~10%) */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(7,8,11,0.9) 0%, rgba(7,8,11,0.83) 28%, rgba(7,8,11,0.50) 50%, rgba(7,8,11,0.09) 78%, rgba(7,8,11,0) 100%)",
+            }}
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-0 h-[60%]"
+            style={{
+              background:
+                "radial-gradient(60% 60% at 50% 0%, rgba(163, 19, 42, 0.20) 0%, rgba(7, 8, 11, 0) 70%)",
+            }}
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-[#07080b]"
+          />
+          <div className="bg-grid pointer-events-none absolute inset-0 opacity-30" />
+        </div>
 
-      <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col px-6 pt-32 pb-20 lg:px-10">
-        {/* Status bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease }}
-          className="mb-12 flex flex-wrap items-center gap-3 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-[#a8a39a]"
-        >
-          <span className="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-[#e21a3a]" />
-          <span className="text-[#f0cc7a]">Mission Active</span>
-          <span className="text-[#a8a39a]/50">·</span>
-          <span>SDVOSB · CVE Verified</span>
-          <span className="text-[#a8a39a]/50">·</span>
-          <span>Established 2010</span>
-        </motion.div>
+        {/* Top status bar */}
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-32 lg:px-10">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease }}
+            className="flex flex-wrap items-center gap-3 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-[#a8a39a]"
+          >
+            <span className="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-[#e21a3a]" />
+            <span className="text-[#f0cc7a]">Mission Active</span>
+            <span className="text-[#a8a39a]/50">·</span>
+            <span>SDVOSB · CVE Verified</span>
+            <span className="text-[#a8a39a]/50">·</span>
+            <span>Established 2010</span>
+          </motion.div>
+        </div>
 
-        <div className="flex flex-1 items-center">
-          <div className="w-full">
+        {/* Centered content (left-anchored on desktop) */}
+        <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 items-center px-6 lg:px-10">
+          <div className="w-full max-w-[1080px]">
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease, delay: 0.05 }}
-              className="font-[var(--font-display)] text-balance text-[44px] font-bold leading-[0.95] tracking-tight sm:text-[64px] lg:text-[96px] xl:text-[112px]"
+              className="font-[var(--font-display)] text-balance text-[40px] uppercase leading-[1.0] tracking-[-0.005em] sm:text-[56px] lg:text-[72px] xl:text-[88px]"
             >
-              ENGINEERED FOR
-              <br />
+              Engineered for{" "}
               <span className="bg-gradient-to-r from-[#f0cc7a] via-[#d4ae5b] to-[#8c7332] bg-clip-text text-transparent">
-                THE MISSION
+                the mission
               </span>
               <br />
-              <span className="text-[#f5f4ef]/70">THAT MATTERS</span>
+              <span className="text-[#f5f4ef]/65">that matters.</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease, delay: 0.25 }}
-              className="mt-8 max-w-2xl text-pretty text-base leading-relaxed text-[#a8a39a] sm:text-lg"
+              className="mt-7 max-w-xl text-pretty text-base leading-relaxed text-[#a8a39a] sm:text-lg"
             >
-              Virtus Technology Solutions is a Service-Disabled Veteran-Owned
-              Small Business delivering systems engineering, integration, program
-              management, and mission operations support to the U.S. Department
-              of Defense, the Intelligence Community, and federal partners across
-              the national security enterprise.
+              Veteran-owned engineering for the U.S. Intelligence Community
+              and Department of Defense.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease, delay: 0.4 }}
-              className="mt-10 flex flex-wrap items-center gap-4"
+              className="mt-10 flex flex-wrap items-center gap-3"
             >
               <Link
                 href="/services"
@@ -107,25 +111,44 @@ export function Hero() {
                 Engage a Team Lead
               </Link>
             </motion.div>
-
-            {/* Stats strip */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease, delay: 0.55 }}
-              className="mt-20 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-md sm:grid-cols-4"
-            >
-              <Stat n="14+" label="Years on Mission" />
-              <Stat n="100%" label="Cleared Workforce" />
-              <Stat n="DoD · IC" label="Customer Set" />
-              <Stat n="SDVOSB" label="CVE Certified" />
-            </motion.div>
           </div>
         </div>
-      </div>
 
-      {/* Bottom marquee */}
-      <div className="relative border-t border-white/5 bg-black/40 backdrop-blur-md">
+        {/* Stats strip — flush with bottom of viewport on desktop, with breathing room above */}
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-12 pb-8 lg:px-10 lg:pt-20 lg:pb-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease, delay: 0.6 }}
+            className="grid grid-cols-2 gap-3 sm:grid-cols-4"
+          >
+            {STATS.map((s, i) => (
+              <Magnetic key={s.label} strength={8} tilt={3}>
+                <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#07080b]/65 px-5 py-4 backdrop-blur-md transition-colors hover:border-[#d4ae5b]/40 hover:bg-[#0d1015]/80">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <div className="font-[var(--font-display)] text-2xl font-black uppercase tracking-tight text-[#f0cc7a] sm:text-3xl">
+                      {s.n}
+                    </div>
+                    <div className="font-[var(--font-mono)] text-[9px] uppercase tracking-[0.22em] text-[#a8a39a]/70">
+                      0{i + 1}
+                    </div>
+                  </div>
+                  <div className="mt-1 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] text-[#a8a39a]">
+                    {s.label}
+                  </div>
+                  <span
+                    aria-hidden
+                    className="absolute inset-x-4 bottom-0 h-px origin-left scale-x-0 bg-gradient-to-r from-[#d4ae5b]/60 to-transparent transition-transform duration-500 group-hover:scale-x-100"
+                  />
+                </div>
+              </Magnetic>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Customer marquee — outside the 100svh hero so the stats can be flush */}
+      <div className="relative border-y border-white/5 bg-black/40 backdrop-blur-md">
         <div className="overflow-hidden py-4">
           <div className="marquee flex w-max items-center gap-12 whitespace-nowrap font-[var(--font-mono)] text-[11px] uppercase tracking-[0.32em] text-[#a8a39a]/70">
             {Array.from({ length: 2 }).map((_, i) => (
@@ -152,19 +175,6 @@ export function Hero() {
           </div>
         </div>
       </div>
-    </section>
-  );
-}
-
-function Stat({ n, label }: { n: string; label: string }) {
-  return (
-    <div className="flex flex-col gap-1 bg-[#07080b]/60 px-5 py-5">
-      <div className="font-[var(--font-display)] text-2xl font-semibold text-[#f0cc7a] sm:text-3xl">
-        {n}
-      </div>
-      <div className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] text-[#a8a39a]">
-        {label}
-      </div>
-    </div>
+    </>
   );
 }

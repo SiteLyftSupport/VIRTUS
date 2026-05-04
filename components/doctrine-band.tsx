@@ -25,7 +25,7 @@ export function DoctrineBand() {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: false, margin: "-80px" }}
           transition={{ duration: 0.7, ease }}
           className="max-w-2xl"
         >
@@ -33,7 +33,7 @@ export function DoctrineBand() {
             <span className="h-px w-10 bg-[#d4ae5b]/40" />
             <span>Doctrine</span>
           </div>
-          <h2 className="font-[var(--font-display)] text-balance text-3xl font-semibold leading-[1.1] tracking-tight text-[#f5f4ef] sm:text-4xl lg:text-5xl">
+          <h2 className="font-[var(--font-tactical)] text-balance text-3xl font-extrabold leading-[1.1] tracking-tight text-[#f5f4ef] sm:text-4xl lg:text-5xl">
             "Virtus" is the Roman virtue of valor, courage, character, and
             worth.
             <span className="mt-4 block text-[#d4ae5b]">
