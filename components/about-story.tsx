@@ -46,7 +46,7 @@ export function AboutStory() {
         >
           <div className="lg:col-span-7">
             <SectionEyebrow number="01" label="About Virtus" />
-            <h1 className="font-[var(--font-tactical)] text-balance text-5xl font-medium leading-[1.0] tracking-tight sm:text-4xl lg:text-[52px]">
+            <h1 className="font-[var(--font-tactical)] text-balance text-5xl font-bold leading-[1.0] tracking-tight sm:text-4xl lg:text-[52px]">
               A small business
               <span className="block text-[#d4ae5b]">with a heavy weight class.</span>
             </h1>
@@ -98,7 +98,7 @@ export function FounderStatement() {
           transition={{ duration: 0.7, ease }}
         >
           <SectionEyebrow number="02" label="From the Founder" />
-          <blockquote className="mt-2 font-[var(--font-tactical)] text-balance text-3xl font-medium leading-[1.15] tracking-tight text-[#f5f4ef] sm:text-4xl lg:text-5xl">
+          <blockquote className="mt-2 font-[var(--font-tactical)] text-balance text-3xl font-bold leading-[1.15] tracking-tight text-[#f5f4ef] sm:text-4xl lg:text-5xl">
             "I started Virtus because the customer deserved better than a body
             shop. We send the people you would have asked for by name —
             engineers and operators who have already done the job, and who own
@@ -161,7 +161,7 @@ export function Timeline() {
           className="max-w-2xl"
         >
           <SectionEyebrow number="03" label="History" />
-          <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
+          <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
             Fifteen years on
             <span className="block text-[#d4ae5b]">the same standard.</span>
           </h2>
@@ -244,7 +244,7 @@ export function FoundingPrinciples() {
           className="max-w-2xl"
         >
           <SectionEyebrow number="04" label="Founding Principles" />
-          <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
+          <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
             What "Virtus" means.
           </h2>
           <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-[#a8a39a]">
@@ -291,7 +291,7 @@ export function AboutCTA() {
           viewport={{ once: false, margin: "-80px" }}
           transition={{ duration: 0.7, ease }}
         >
-          <h3 className="font-[var(--font-tactical)] text-balance text-3xl font-medium leading-[1.1] tracking-tight text-[#f5f4ef] sm:text-4xl lg:text-5xl">
+          <h3 className="font-[var(--font-tactical)] text-balance text-3xl font-bold leading-[1.1] tracking-tight text-[#f5f4ef] sm:text-4xl lg:text-5xl">
             Ready to put a senior practitioner on your program?
           </h3>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">

@@ -97,7 +97,7 @@ export function Team() {
         >
           <div className="lg:col-span-5">
             <SectionEyebrow number="03" label="The Team" />
-            <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
+            <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
               The people we send
               <span className="block text-[#d4ae5b]">define the work.</span>
             </h2>

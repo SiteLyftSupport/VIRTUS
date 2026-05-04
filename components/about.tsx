@@ -30,7 +30,7 @@ export function About() {
             className="flex flex-col lg:col-span-5"
           >
             <SectionEyebrow number="01" label="About Virtus" />
-            <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl lg:text-4xl">
+            <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-4xl">
               Founded by intelligence and defense professionals.
               <span className="block text-[#d4ae5b]"> Built for the mission.</span>
             </h2>

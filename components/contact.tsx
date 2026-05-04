@@ -43,7 +43,7 @@ export function Contact() {
           className="mx-auto max-w-3xl text-center"
         >
           <SectionEyebrow number="06" label="Engage Virtus" />
-          <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
+          <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
             Tell us about
             <span className="block text-[#d4ae5b]">the mission.</span>
           </h2>
