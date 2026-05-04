@@ -86,18 +86,15 @@ export function Hero() {
               transition={{ duration: 0.8, ease, delay: 0.25 }}
               className="mt-7 max-w-xl text-pretty text-base leading-relaxed text-[#a8a39a] sm:text-lg"
             >
-              Virtus Technology Solutions is a Service-Disabled Veteran-Owned
-              Small Business delivering systems and software engineering, data
-              engineering and analytics, AI/ML development, and technical
-              subject-matter expertise to the U.S. Intelligence Community and
-              Department of Defense.
+              Veteran-owned engineering for the U.S. Intelligence Community
+              and Department of Defense.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease, delay: 0.4 }}
-              className="mt-9 flex flex-wrap items-center gap-3"
+              className="mt-10 flex flex-wrap items-center gap-3"
             >
               <Link
                 href="/services"
@@ -117,8 +114,8 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Stats strip — flush with bottom of viewport on desktop */}
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-8 lg:px-10 lg:pb-10">
+        {/* Stats strip — flush with bottom of viewport on desktop, with breathing room above */}
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-12 pb-8 lg:px-10 lg:pt-20 lg:pb-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
