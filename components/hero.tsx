@@ -70,22 +70,21 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Centered content (left-anchored on desktop, copy occupies ~58%) */}
+        {/* Centered content (left-anchored on desktop) */}
         <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 items-center px-6 lg:px-10">
-          <div className="w-full max-w-[760px]">
+          <div className="w-full max-w-[1080px]">
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease, delay: 0.05 }}
-              className="font-[var(--font-display)] text-balance text-[44px] font-black uppercase leading-[0.92] tracking-[-0.01em] sm:text-[60px] lg:text-[88px] xl:text-[104px]"
+              className="font-[var(--font-display)] text-balance text-[40px] font-black uppercase leading-[0.92] tracking-[-0.015em] sm:text-[54px] lg:text-[68px] xl:text-[80px]"
             >
-              Engineered for
-              <br />
+              Engineered for{" "}
               <span className="bg-gradient-to-r from-[#f0cc7a] via-[#d4ae5b] to-[#8c7332] bg-clip-text text-transparent">
                 the mission
               </span>
               <br />
-              <span className="text-[#f5f4ef]/65">that matters</span>
+              <span className="text-[#f5f4ef]/65">that matters.</span>
             </motion.h1>
 
             <motion.p
