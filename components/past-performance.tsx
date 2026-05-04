@@ -80,7 +80,7 @@ export function PastPerformance() {
         <div className="grid items-stretch gap-10 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <SectionEyebrow number="05" label="Past Performance" />
-            <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
+            <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
               Programs that
               <span className="block text-[#d4ae5b]">moved the needle.</span>
             </h2>

@@ -31,7 +31,7 @@ export function HomeServicesTeaser() {
         >
           <div className="lg:col-span-7">
             <SectionEyebrow number="02" label="Services" />
-            <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
+            <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
               Thirteen disciplines.
               <span className="block text-[#d4ae5b]">One operating standard.</span>
             </h2>

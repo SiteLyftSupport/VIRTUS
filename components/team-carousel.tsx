@@ -89,7 +89,7 @@ export function TeamCarousel() {
           className="mx-auto max-w-3xl text-center"
         >
           <SectionEyebrow number="03" label="The Team" />
-          <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
+          <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
             The people we send
             <span className="block text-[#d4ae5b]">define the work.</span>
           </h2>

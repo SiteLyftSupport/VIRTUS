@@ -130,7 +130,7 @@ export function HomeTeamTeaser() {
           >
             <div>
               <SectionEyebrow number="03" label="The Team" />
-              <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-bold leading-[1.0] tracking-tight sm:text-5xl lg:text-[52px]">
+              <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-extrabold leading-[1.0] tracking-tight sm:text-5xl lg:text-[52px]">
                 Senior practitioners.
                 <span className="block text-[#d4ae5b]">From day one.</span>
               </h2>

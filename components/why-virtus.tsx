@@ -69,7 +69,7 @@ export function WhyVirtus() {
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         <div className="max-w-3xl">
           <SectionEyebrow number="04" label="Why Virtus" />
-          <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
+          <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
             A small business with the
             <span className="block text-[#d4ae5b]">posture of a prime.</span>
           </h2>
