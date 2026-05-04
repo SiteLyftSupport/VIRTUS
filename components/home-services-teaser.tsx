@@ -12,7 +12,7 @@ import { Magnetic } from "./magnetic";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export function HomeServicesTeaser() {
-  const featured = SERVICES.slice(0, 6);
+  const featured = SERVICES.slice(0, 3);
 
   return (
     <section

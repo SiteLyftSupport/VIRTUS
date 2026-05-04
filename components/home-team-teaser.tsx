@@ -21,13 +21,13 @@ function LinkedInIcon({ className }: { className?: string }) {
 
 export function HomeTeamTeaser() {
   const [open, setOpen] = useState<Member | null>(null);
-  const previewMembers = TEAM.slice(0, 4);
 
   return (
     <section className="relative overflow-hidden border-t border-white/5 bg-[#07080b] py-28 lg:py-40">
       <div className="bg-grid-fine pointer-events-none absolute inset-0 opacity-25" />
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="grid items-center gap-12 lg:grid-cols-12">
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+          {/* Left column — sticky on desktop */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -35,75 +35,114 @@ export function HomeTeamTeaser() {
             transition={{ duration: 0.7, ease }}
             className="lg:col-span-5"
           >
-            <SectionEyebrow number="03" label="The Team" />
-            <h2 className="font-[var(--font-display)] text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-[64px]">
-              Senior practitioners.
-              <span className="block text-[#d4ae5b]">From day one.</span>
-            </h2>
-            <p className="mt-7 max-w-md text-pretty text-base leading-relaxed text-[#a8a39a]">
-              Every Virtus engagement is led by an engineer or operator who has
-              done the job in uniform, in an agency, or both.
-            </p>
+            <div className="lg:sticky lg:top-32">
+              <SectionEyebrow number="03" label="The Team" />
+              <h2 className="font-[var(--font-display)] text-balance text-4xl font-extrabold uppercase leading-[1.0] tracking-tight sm:text-5xl lg:text-[64px]">
+                Senior practitioners.
+                <span className="block text-[#d4ae5b]">From day one.</span>
+              </h2>
+              <p className="mt-7 max-w-md text-pretty text-base leading-relaxed text-[#a8a39a]">
+                Every Virtus engagement is led by an engineer or operator who
+                has done the job in uniform, in an agency, or both. Click any
+                name on the right for the full bio.
+              </p>
 
-            <div className="mt-9 grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02]">
-              <Stat n="7" label="Senior practitioners" />
-              <Stat n="100%" label="TS/SCI eligible" />
-              <Stat n="14+" label="Years on mission" />
+              <div className="mt-9 grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02]">
+                <Stat n={`${TEAM.length}`} label="Senior practitioners" />
+                <Stat n="100%" label="TS/SCI eligible" />
+                <Stat n="14+" label="Years on mission" />
+              </div>
+
+              <Link
+                href="/team"
+                className="group mt-9 inline-flex items-center gap-2 rounded-full border border-[#d4ae5b]/40 bg-[#d4ae5b]/5 px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.18em] text-[#f0cc7a] transition-all hover:bg-[#d4ae5b]/15"
+              >
+                Meet the team
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
             </div>
-
-            <Link
-              href="/team"
-              className="group mt-9 inline-flex items-center gap-2 rounded-full border border-[#d4ae5b]/40 bg-[#d4ae5b]/5 px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.18em] text-[#f0cc7a] transition-all hover:bg-[#d4ae5b]/15"
-            >
-              Meet the team
-              <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
           </motion.div>
 
-          {/* 2x2 portrait wall, click any to open bio modal */}
-          <div className="grid grid-cols-2 gap-3 lg:col-span-7 lg:gap-4">
-            {previewMembers.map((m, i) => (
-              <motion.button
+          {/* Scrolling member list */}
+          <ul className="space-y-5 lg:col-span-7">
+            {TEAM.map((m, i) => (
+              <motion.li
                 key={m.name}
-                type="button"
-                onClick={() => setOpen(m)}
-                aria-label={`Open ${m.name} bio`}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.55, ease, delay: i * 0.06 }}
-                whileHover={{ y: -4 }}
-                className="group relative aspect-[3/4] overflow-hidden rounded-2xl border border-white/10 bg-[#0d1015]"
+                transition={{ duration: 0.5, ease }}
               >
-                <Image
-                  src={m.image}
-                  alt={m.name}
-                  fill
-                  sizes="(min-width: 1024px) 28vw, 50vw"
-                  className="object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-[1.05]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#07080b] via-[#07080b]/30 to-transparent" />
-                {m.badge && (
-                  <span className="absolute left-3 top-3 rounded-full border border-[#d4ae5b]/40 bg-[#07080b]/70 px-2.5 py-1 font-[var(--font-mono)] text-[9px] uppercase tracking-[0.22em] text-[#f0cc7a] backdrop-blur">
-                    {m.badge}
-                  </span>
-                )}
-                <div className="absolute inset-x-0 bottom-0 p-4 text-left">
-                  <div className="font-[var(--font-mono)] text-[9px] uppercase tracking-[0.28em] text-[#d4ae5b]">
-                    {m.role}
+                <button
+                  type="button"
+                  onClick={() => setOpen(m)}
+                  aria-label={`Open ${m.name} bio`}
+                  className="group flex w-full items-stretch overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] text-left transition-all hover:border-[#d4ae5b]/40 hover:bg-[#d4ae5b]/[0.04]"
+                >
+                  <div className="relative aspect-[3/4] w-32 shrink-0 sm:w-40">
+                    <Image
+                      src={m.image}
+                      alt={m.name}
+                      fill
+                      sizes="160px"
+                      className="object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#07080b]/40 to-transparent" />
+                    {m.badge && (
+                      <span className="absolute left-2 top-2 rounded-full border border-[#d4ae5b]/40 bg-[#07080b]/70 px-2 py-0.5 font-[var(--font-mono)] text-[8px] uppercase tracking-[0.22em] text-[#f0cc7a] backdrop-blur">
+                        {m.badge}
+                      </span>
+                    )}
                   </div>
-                  <div className="mt-1 font-[var(--font-display)] text-lg font-bold tracking-tight text-[#f5f4ef]">
-                    {m.name}
+                  <div className="flex flex-1 flex-col justify-between gap-3 p-5 sm:p-6">
+                    <div>
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <div className="font-[var(--font-mono)] text-[9px] uppercase tracking-[0.28em] text-[#d4ae5b]">
+                            {m.role}
+                          </div>
+                          <h3 className="mt-1 font-[var(--font-display)] text-xl font-extrabold uppercase tracking-tight text-[#f5f4ef] sm:text-2xl">
+                            {m.name}
+                          </h3>
+                        </div>
+                        <span className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] text-[#a8a39a]/60">
+                          0{i + 1}
+                        </span>
+                      </div>
+                      <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-[#a8a39a] sm:line-clamp-3">
+                        {m.bio}
+                      </p>
+                    </div>
+
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <div className="flex flex-wrap gap-1.5">
+                        {m.pedigree.slice(0, 2).map((p) => (
+                          <span
+                            key={p}
+                            className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 font-[var(--font-mono)] text-[9px] uppercase tracking-[0.18em] text-[#a8a39a]"
+                          >
+                            {p}
+                          </span>
+                        ))}
+                      </div>
+                      <span className="inline-flex items-center gap-1.5 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] text-[#d4ae5b]">
+                        Open bio
+                        <ArrowUpRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <ArrowUpRight className="absolute right-3 top-3 h-4 w-4 text-[#a8a39a] opacity-0 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[#f0cc7a] group-hover:opacity-100" />
-              </motion.button>
+                </button>
+              </motion.li>
             ))}
-          </div>
+          </ul>
         </div>
       </div>
 
-      <Modal open={!!open} onClose={() => setOpen(null)} labelledBy="home-team-modal-title">
+      <Modal
+        open={!!open}
+        onClose={() => setOpen(null)}
+        labelledBy="home-team-modal-title"
+      >
         {open && (
           <div className="grid h-full md:grid-cols-2">
             <div className="relative aspect-[3/4] overflow-hidden md:aspect-auto md:h-[min(80vh,720px)]">
@@ -129,7 +168,7 @@ export function HomeTeamTeaser() {
                 </div>
                 <h2
                   id="home-team-modal-title"
-                  className="mt-3 font-[var(--font-display)] text-3xl font-extrabold leading-tight tracking-tight text-[#f5f4ef] sm:text-4xl lg:text-5xl"
+                  className="mt-3 font-[var(--font-display)] text-3xl font-extrabold uppercase leading-tight tracking-tight text-[#f5f4ef] sm:text-4xl lg:text-5xl"
                 >
                   {open.name}
                 </h2>

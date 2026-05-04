@@ -1,6 +1,5 @@
 import { Hero } from "@/components/hero";
 import { HomeAboutTeaser } from "@/components/home-about-teaser";
-import { DoctrineBand } from "@/components/doctrine-band";
 import { HomeServicesTeaser } from "@/components/home-services-teaser";
 import { HomeTeamTeaser } from "@/components/home-team-teaser";
 import { HomeCareersTeaser } from "@/components/home-careers-teaser";
@@ -13,7 +12,6 @@ export default function Home() {
     <>
       <Hero />
       <HomeAboutTeaser />
-      <DoctrineBand />
       <HomeServicesTeaser />
       <HomeTeamTeaser />
       <HomeCareersTeaser />
