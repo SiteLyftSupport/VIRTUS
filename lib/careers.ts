@@ -1,9 +1,14 @@
+import { SERVICES } from "./services";
+
+const SVC = Object.fromEntries(SERVICES.map((s) => [s.slug, s.image]));
+
 export type Career = {
   slug: string;
   title: string;
   location: string;
   clearance: string;
   summary: string;
+  image: string;
   required: string[];
   desired?: string[];
   technologies?: string[];
@@ -15,6 +20,7 @@ export const CAREERS: Career[] = [
     title: "Systems Engineer",
     location: "Northern VA",
     clearance: "Active FS Poly",
+    image: SVC["seta"],
     summary:
       "Drive technical requirements, accreditation, and program-level engineering for highly visible Sponsor programs.",
     required: [
@@ -43,6 +49,7 @@ export const CAREERS: Career[] = [
     title: "Software Engineer",
     location: "Northern VA",
     clearance: "Active FS Poly",
+    image: SVC["software-engineering"],
     summary:
       "Build full-stack web applications and services for large, highly distributed Sponsor systems.",
     required: [
@@ -84,6 +91,7 @@ export const CAREERS: Career[] = [
     title: "Software Developer",
     location: "Northern VA",
     clearance: "Active FS Poly",
+    image: SVC["data-architecting"],
     summary:
       "Develop dashboards, costing models, and AWS-native delivery pipelines that translate metrics into mission decisions.",
     required: [
@@ -106,6 +114,7 @@ export const CAREERS: Career[] = [
     title: "Database Administrator",
     location: "Northern VA",
     clearance: "Active FS Poly",
+    image: SVC["database-development"],
     summary:
       "Own structured-data tiers across Oracle and AWS — performance, security, and the integrity of every transaction.",
     required: [
@@ -140,6 +149,7 @@ export const CAREERS: Career[] = [
     title: "Application Developer",
     location: "Northern VA",
     clearance: "Active FS Poly",
+    image: SVC["applications-development"],
     summary:
       "Build and ship web/cloud applications across AWS — from front-end JavaScript through deployment automation.",
     required: [

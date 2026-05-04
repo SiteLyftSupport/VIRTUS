@@ -19,13 +19,13 @@ export function HomeServicesTeaser() {
     >
       <div className="bg-grid pointer-events-none absolute inset-0 opacity-30" />
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="grid gap-10 lg:grid-cols-12">
+        <div className="grid items-stretch gap-10 lg:grid-cols-12">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7, ease }}
-            className="lg:col-span-5"
+            className="flex flex-col justify-center lg:col-span-5"
           >
             <SectionEyebrow number="02" label="Services" />
             <h2 className="font-[var(--font-display)] text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-[56px]">

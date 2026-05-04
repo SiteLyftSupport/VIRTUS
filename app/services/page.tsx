@@ -25,7 +25,7 @@ export default function ServicesPage() {
           </>
         }
         subtitle="Virtus delivers across the full federal technology stack — from applications and cyber through space systems and SETA — with the same senior-grade staffing model we apply to every customer."
-        image={media.capabilities.engineering}
+        image={media.capabilityMatrix}
       />
 
       <section className="relative bg-[#07080b] py-24 lg:py-32">

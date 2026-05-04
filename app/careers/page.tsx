@@ -26,7 +26,7 @@ export default function CareersPage() {
           </>
         }
         subtitle="Every Virtus role is a senior-grade billet with the customer. We hire engineers and operators who can step in on day one — and we put them on programs that matter."
-        image={media.capabilities.infosys}
+        image={media.corridor}
       />
 
       <section className="relative bg-[#07080b] py-24 lg:py-32">

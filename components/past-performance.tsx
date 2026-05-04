@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Quote } from "lucide-react";
 import { SectionEyebrow } from "./section-eyebrow";
+import { media } from "@/lib/media";
 
 const ENGAGEMENTS = [
   {
@@ -61,11 +63,21 @@ export function PastPerformance() {
   return (
     <section
       id="past-performance"
-      className="relative overflow-hidden border-t border-white/5 bg-[#07080b] py-28 lg:py-40"
+      className="relative isolate overflow-hidden border-t border-white/5 bg-[#07080b] py-28 lg:py-40"
     >
-      <div className="bg-grid-fine pointer-events-none absolute inset-0 opacity-30" />
+      <div className="absolute inset-0">
+        <Image
+          src={media.archive}
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover opacity-25"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#07080b]/80 via-[#07080b]/85 to-[#07080b]" />
+        <div className="bg-grid-fine absolute inset-0 opacity-20" />
+      </div>
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="grid gap-10 lg:grid-cols-12">
+        <div className="grid items-stretch gap-10 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <SectionEyebrow number="05" label="Past Performance" />
             <h2 className="font-[var(--font-display)] text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-[56px]">
