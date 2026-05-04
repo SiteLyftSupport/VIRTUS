@@ -8,13 +8,6 @@ import { Magnetic } from "./magnetic";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-const PILLARS = [
-  "Systems & Software Engineering",
-  "Data Engineering & Analytics",
-  "AI / ML Development",
-  "Subject Matter Expertise",
-];
-
 const STATS = [
   { n: "14+", label: "Years on Mission" },
   { n: "100%", label: "Cleared Workforce" },
@@ -100,28 +93,10 @@ export function Hero() {
               Department of Defense.
             </motion.p>
 
-            <motion.ul
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease, delay: 0.35 }}
-              className="mt-7 flex flex-wrap gap-2"
-            >
-              {PILLARS.map((p) => (
-                <li key={p}>
-                  <Magnetic strength={6} tilt={2}>
-                    <span className="group inline-flex cursor-default items-center gap-2 rounded-full border border-[#d4ae5b]/30 bg-[#d4ae5b]/[0.04] px-3 py-1.5 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] text-[#f0cc7a] transition-colors hover:border-[#d4ae5b]/60 hover:bg-[#d4ae5b]/[0.10]">
-                      <span className="h-1 w-1 rounded-full bg-[#d4ae5b] transition-transform group-hover:scale-150" />
-                      {p}
-                    </span>
-                  </Magnetic>
-                </li>
-              ))}
-            </motion.ul>
-
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease, delay: 0.45 }}
+              transition={{ duration: 0.8, ease, delay: 0.4 }}
               className="mt-9 flex flex-wrap items-center gap-3"
             >
               <Link
