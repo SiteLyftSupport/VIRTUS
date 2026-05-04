@@ -5,11 +5,12 @@ import { useEffect, useRef } from "react";
 /**
  * Interactive "signal mesh" — a procedural constellation of nodes connected
  * by faint gold edges, with crimson data packets propagating between them.
- * Pointer attracts nearby nodes; click fires a shockwave that ripples through
- * the network. Auto-animates with subtle drift and spontaneous transmissions.
  *
- * Designed to read as a defense / signals-intelligence "operating fabric" —
- * on-brand for Virtus without being literal about any one mission.
+ * Cursor warps the local field of nodes (gentle attraction with Gaussian
+ * falloff — not a vacuum). Click fires a shockwave that ripples through
+ * the network and bursts packets out of the nearest node. Pointer events
+ * are listened on the window so the warp continues to follow the cursor
+ * even when it sits over text/pills/stats above the canvas.
  */
 
 type Node = {
@@ -21,6 +22,7 @@ type Node = {
   baseY: number;
   hub: boolean;
   pulse: number;
+  drift: number; // phase offset for ambient bob
 };
 
 type Packet = {
@@ -37,20 +39,22 @@ type Wave = {
   duration: number;
 };
 
-const NODE_COUNT = 120;
-const HUB_COUNT = 14;
+const NODE_COUNT = 220;
+const HUB_COUNT = 24;
 const NEIGHBORS = 3;
-const ATTRACT_RADIUS = 220;
-const ATTRACT_STRENGTH = 0.08;
-const SPRING = 0.012;
-const DAMP = 0.86;
+const ATTRACT_RADIUS = 180;
+const ATTRACT_STRENGTH = 0.022;
+const SPRING = 0.022;
+const DAMP = 0.84;
+const AMBIENT_AMP = 0.55; // px ambient bob
 
 export function HeroSignal() {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const canvas = ref.current;
-    if (!canvas) return;
+    const canvasEl = ref.current;
+    if (!canvasEl) return;
+    const canvas = canvasEl;
     const ctx2d = canvas.getContext("2d");
     if (!ctx2d) return;
     const ctx = ctx2d;
@@ -71,16 +75,17 @@ export function HeroSignal() {
       canvas.height = Math.floor(H * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       seed();
+      rebuildNeighbors();
     };
 
     const nodes: Node[] = [];
     const packets: Packet[] = [];
     const waves: Wave[] = [];
     const mouse = { x: -1e6, y: -1e6, inside: false };
+    let neighbors: number[][] = [];
 
     function seed() {
       nodes.length = 0;
-      // Poisson-ish distribution via jittered grid
       const cols = Math.max(1, Math.round(Math.sqrt((NODE_COUNT * W) / Math.max(1, H))));
       const rows = Math.max(1, Math.ceil(NODE_COUNT / cols));
       const cellW = W / cols;
@@ -88,8 +93,8 @@ export function HeroSignal() {
       let count = 0;
       for (let r = 0; r < rows && count < NODE_COUNT; r++) {
         for (let c = 0; c < cols && count < NODE_COUNT; c++) {
-          const x = (c + 0.5) * cellW + (Math.random() - 0.5) * cellW * 0.7;
-          const y = (r + 0.5) * cellH + (Math.random() - 0.5) * cellH * 0.7;
+          const x = (c + 0.5) * cellW + (Math.random() - 0.5) * cellW * 0.65;
+          const y = (r + 0.5) * cellH + (Math.random() - 0.5) * cellH * 0.65;
           nodes.push({
             x,
             y,
@@ -99,11 +104,11 @@ export function HeroSignal() {
             vy: 0,
             hub: false,
             pulse: 0,
+            drift: Math.random() * Math.PI * 2,
           });
           count++;
         }
       }
-      // Mark hubs randomly
       const indices = Array.from({ length: nodes.length }, (_, i) => i);
       for (let i = indices.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -114,12 +119,6 @@ export function HeroSignal() {
       }
     }
 
-    resize();
-    const ro = new ResizeObserver(resize);
-    ro.observe(canvas);
-
-    // Cache neighbors per node (recomputed only on resize, since base positions are stable)
-    let neighbors: number[][] = [];
     function rebuildNeighbors() {
       neighbors = nodes.map((a, i) => {
         const dists: { idx: number; d: number }[] = [];
@@ -135,12 +134,12 @@ export function HeroSignal() {
       });
     }
 
-    const ro2 = new ResizeObserver(() => rebuildNeighbors());
-    ro2.observe(canvas);
-    rebuildNeighbors();
+    resize();
+    const ro = new ResizeObserver(resize);
+    ro.observe(canvas);
 
     function spawnPacket() {
-      if (packets.length >= 28) return;
+      if (packets.length >= 32) return;
       const fromIdx = Math.floor(Math.random() * nodes.length);
       const candidates = neighbors[fromIdx];
       if (!candidates || candidates.length === 0) return;
@@ -149,9 +148,8 @@ export function HeroSignal() {
         fromIdx,
         toIdx,
         t: 0,
-        duration: 900 + Math.random() * 1200,
+        duration: 900 + Math.random() * 1300,
       });
-      // Pulse the source node
       nodes[fromIdx].pulse = 1;
     }
 
@@ -164,8 +162,7 @@ export function HeroSignal() {
       const dt = Math.min(40, now - last);
       last = now;
 
-      // Spawn packets at a steady rate, plus more when the cursor is inside
-      const spawnEvery = mouse.inside ? 110 : 240;
+      const spawnEvery = mouse.inside ? 140 : 280;
       if (now - lastSpawn > spawnEvery) {
         spawnPacket();
         lastSpawn = now;
@@ -173,24 +170,35 @@ export function HeroSignal() {
 
       ctx.clearRect(0, 0, W, H);
 
-      // Update node physics
+      const ambientT = now * 0.0006;
+
       for (let i = 0; i < nodes.length; i++) {
         const n = nodes[i];
-        // Gentle spring back to base position
+
+        // Spring back to base
         n.vx += (n.baseX - n.x) * SPRING;
         n.vy += (n.baseY - n.y) * SPRING;
-        // Mouse attraction within radius
+
+        // Gentle ambient bob around base position
+        const aox = Math.cos(ambientT + n.drift) * AMBIENT_AMP;
+        const aoy = Math.sin(ambientT * 0.85 + n.drift * 1.2) * AMBIENT_AMP;
+        n.vx += aox * 0.04;
+        n.vy += aoy * 0.04;
+
+        // Cursor warp — Gaussian falloff so only nearby nodes shift
         if (mouse.inside) {
           const dx = mouse.x - n.x;
           const dy = mouse.y - n.y;
-          const dist2 = dx * dx + dy * dy;
-          const r2 = ATTRACT_RADIUS * ATTRACT_RADIUS;
-          if (dist2 < r2 && dist2 > 1) {
-            const f = ATTRACT_STRENGTH * (1 - dist2 / r2);
-            n.vx += dx * f;
-            n.vy += dy * f;
+          const d = Math.hypot(dx, dy);
+          if (d > 0.5 && d < ATTRACT_RADIUS) {
+            const u = d / ATTRACT_RADIUS;
+            const falloff = Math.exp(-u * u * 3.2); // sharp Gaussian
+            const dir = falloff * ATTRACT_STRENGTH;
+            n.vx += (dx / d) * dir * d;
+            n.vy += (dy / d) * dir * d;
           }
         }
+
         // Wave displacement
         for (const w of waves) {
           const age = (now - w.start) / w.duration;
@@ -199,11 +207,11 @@ export function HeroSignal() {
           const dx = n.x - w.x;
           const dy = n.y - w.y;
           const d = Math.hypot(dx, dy);
-          const band = 70;
+          const band = 80;
           const proximity = Math.max(0, 1 - Math.abs(d - ringR) / band);
           if (proximity > 0) {
             const fall = 1 - age;
-            const force = proximity * fall * 4.2;
+            const force = proximity * fall * 4.5;
             const nx = dx / (d || 1);
             const ny = dy / (d || 1);
             n.vx += nx * force;
@@ -211,6 +219,7 @@ export function HeroSignal() {
             n.pulse = Math.max(n.pulse, proximity * fall);
           }
         }
+
         n.vx *= DAMP;
         n.vy *= DAMP;
         n.x += n.vx;
@@ -218,33 +227,29 @@ export function HeroSignal() {
         n.pulse *= 0.94;
       }
 
-      // Cull old waves
       for (let i = waves.length - 1; i >= 0; i--) {
         if (now - waves[i].start > waves[i].duration) waves.splice(i, 1);
       }
 
-      // Draw edges
+      // Edges
       ctx.lineWidth = 1;
       for (let i = 0; i < nodes.length; i++) {
         const a = nodes[i];
         const list = neighbors[i] ?? [];
         for (let k = 0; k < list.length; k++) {
           const j = list[k];
-          if (j < i) continue; // avoid double-draw
+          if (j < i) continue;
           const b = nodes[j];
           const dx = b.x - a.x;
           const dy = b.y - a.y;
           const d = Math.hypot(dx, dy);
           if (d > 240) continue;
-          // Distance from cursor to edge midpoint amplifies edge brightness
           const mx = (a.x + b.x) / 2;
           const my = (a.y + b.y) / 2;
           const cd = Math.hypot(mx - mouse.x, my - mouse.y);
-          const proximity = mouse.inside
-            ? Math.max(0, 1 - cd / 280)
-            : 0;
-          const baseAlpha = 0.13 + (a.hub || b.hub ? 0.08 : 0);
-          const alpha = baseAlpha + proximity * 0.55;
+          const proximity = mouse.inside ? Math.max(0, 1 - cd / 280) : 0;
+          const baseAlpha = 0.11 + (a.hub || b.hub ? 0.08 : 0);
+          const alpha = baseAlpha + proximity * 0.6;
           ctx.strokeStyle = `rgba(212, 174, 91, ${alpha.toFixed(3)})`;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
@@ -253,13 +258,12 @@ export function HeroSignal() {
         }
       }
 
-      // Draw + advance packets
+      // Packets
       for (let i = packets.length - 1; i >= 0; i--) {
         const p = packets[i];
         p.t += dt;
         const u = p.t / p.duration;
         if (u >= 1) {
-          // Arrival pulses the destination
           nodes[p.toIdx].pulse = Math.max(nodes[p.toIdx].pulse, 1);
           packets.splice(i, 1);
           continue;
@@ -272,23 +276,22 @@ export function HeroSignal() {
         ctx.beginPath();
         ctx.arc(x, y, 2.2, 0, Math.PI * 2);
         ctx.fill();
-        // Trail
         ctx.strokeStyle = `rgba(226, 26, 58, ${0.35})`;
+        ctx.lineWidth = 1.4;
         ctx.beginPath();
         const tx = a.x + (b.x - a.x) * Math.max(0, u - 0.1);
         const ty = a.y + (b.y - a.y) * Math.max(0, u - 0.1);
         ctx.moveTo(tx, ty);
         ctx.lineTo(x, y);
-        ctx.lineWidth = 1.4;
         ctx.stroke();
       }
 
-      // Draw waves
+      // Waves
       for (const w of waves) {
         const age = (now - w.start) / w.duration;
         if (age <= 0 || age >= 1) continue;
         const r = age * Math.max(W, H) * 0.9;
-        const alpha = (1 - age) * 0.4;
+        const alpha = (1 - age) * 0.35;
         ctx.strokeStyle = `rgba(240, 204, 122, ${alpha})`;
         ctx.lineWidth = 1.5;
         ctx.beginPath();
@@ -296,15 +299,18 @@ export function HeroSignal() {
         ctx.stroke();
       }
 
-      // Draw nodes
+      // Nodes
       for (let i = 0; i < nodes.length; i++) {
         const n = nodes[i];
-        const baseR = n.hub ? 2.6 : 1.6;
+        const baseR = n.hub ? 2.6 : 1.5;
         const r = baseR + n.pulse * 4;
         if (n.pulse > 0.05) {
           const ga = 0.18 * n.pulse;
           const grad = ctx.createRadialGradient(n.x, n.y, 1, n.x, n.y, r * 5);
-          grad.addColorStop(0, `rgba(${n.hub ? "226, 26, 58" : "240, 204, 122"}, ${ga})`);
+          grad.addColorStop(
+            0,
+            `rgba(${n.hub ? "226, 26, 58" : "240, 204, 122"}, ${ga})`,
+          );
           grad.addColorStop(1, "rgba(0,0,0,0)");
           ctx.fillStyle = grad;
           ctx.beginPath();
@@ -321,35 +327,43 @@ export function HeroSignal() {
     }
 
     if (!reduce) raf = requestAnimationFrame(draw);
-    else {
-      // For reduced motion: render a single static frame
-      draw(performance.now());
-      cancelAnimationFrame(raf);
-    }
+    else draw(performance.now());
 
-    function localPoint(e: PointerEvent) {
-      const rect = canvas!.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
+    // Pointer events on window so cursor over overlaying text still warps
+    function pointFromClient(clientX: number, clientY: number) {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = clientX - rect.left;
+      mouse.y = clientY - rect.top;
+      mouse.inside =
+        mouse.x >= 0 && mouse.y >= 0 && mouse.x <= rect.width && mouse.y <= rect.height;
     }
-    function onMove(e: PointerEvent) {
-      localPoint(e);
-      mouse.inside = true;
+    function onPointerMove(e: PointerEvent) {
+      pointFromClient(e.clientX, e.clientY);
     }
-    function onLeave() {
+    function onPointerLeaveDoc() {
       mouse.inside = false;
       mouse.x = -1e6;
       mouse.y = -1e6;
     }
-    function onClick(e: PointerEvent) {
-      localPoint(e);
+    function onPointerDown(e: PointerEvent) {
+      // Skip clicks on actual interactive elements (buttons, links)
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        (target.closest("[data-hero-noclick]") ||
+          target.closest("button") ||
+          target.closest("a"))
+      ) {
+        return;
+      }
+      pointFromClient(e.clientX, e.clientY);
+      if (!mouse.inside) return;
       waves.push({
         x: mouse.x,
         y: mouse.y,
         start: performance.now(),
         duration: 1400,
       });
-      // Burst of packets radiating from nearest node
       let nearest = -1;
       let nd = Infinity;
       for (let i = 0; i < nodes.length; i++) {
@@ -374,26 +388,27 @@ export function HeroSignal() {
       }
     }
 
-    canvas.addEventListener("pointermove", onMove);
-    canvas.addEventListener("pointerleave", onLeave);
-    canvas.addEventListener("pointerdown", onClick);
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    window.addEventListener("pointerdown", onPointerDown);
+    window.addEventListener("blur", onPointerLeaveDoc);
+    document.addEventListener("mouseleave", onPointerLeaveDoc);
 
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
-      ro2.disconnect();
-      canvas.removeEventListener("pointermove", onMove);
-      canvas.removeEventListener("pointerleave", onLeave);
-      canvas.removeEventListener("pointerdown", onClick);
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerdown", onPointerDown);
+      window.removeEventListener("blur", onPointerLeaveDoc);
+      document.removeEventListener("mouseleave", onPointerLeaveDoc);
     };
   }, []);
 
   return (
-    <div className="relative h-full w-full">
-      <canvas ref={ref} className="h-full w-full" aria-hidden />
-      <div className="pointer-events-none absolute bottom-3 right-4 font-[var(--font-mono)] text-[9px] uppercase tracking-[0.28em] text-[#a8a39a]/60">
-        Hover · click
-      </div>
-    </div>
+    <canvas
+      ref={ref}
+      aria-hidden
+      className="absolute inset-0 h-full w-full"
+      style={{ pointerEvents: "none" }}
+    />
   );
 }

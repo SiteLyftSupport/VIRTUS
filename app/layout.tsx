@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Saira, JetBrains_Mono } from "next/font/google";
+import { Inter, Big_Shoulders, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -9,13 +9,13 @@ const sans = Inter({
   subsets: ["latin"],
 });
 
-// Display font chosen to mirror the wide, bold, geometric "VIRTUS" wordmark
-// on the business card — Saira (heavy weights) is the closest free
-// equivalent to the printed mark's industrial-defense feel.
-const display = Saira({
+// Display: Big Shoulders Display — wide, bold geometric letterforms that
+// mirror the industrial / inscribed feel of the printed VIRTUS wordmark
+// far better than Saira (which read as too neutral against the brand).
+const display = Big_Shoulders({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800", "900"],
+  weight: ["600", "700", "800", "900"],
 });
 
 const mono = JetBrains_Mono({

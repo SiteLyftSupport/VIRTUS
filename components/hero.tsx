@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowUpRight, Shield } from "lucide-react";
 import { HeroSignal } from "./hero-signal";
+import { Magnetic } from "./magnetic";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -14,54 +15,77 @@ const PILLARS = [
   "Subject Matter Expertise",
 ];
 
+const STATS = [
+  { n: "14+", label: "Years on Mission" },
+  { n: "100%", label: "Cleared Workforce" },
+  { n: "DoD · IC", label: "Customer Set" },
+  { n: "SDVOSB", label: "CVE Certified" },
+];
+
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-[#07080b]">
-      {/* Backdrop layers */}
-      <div className="absolute inset-0">
-        <div className="bg-grid absolute inset-0 opacity-50" />
-        <div
-          className="absolute inset-x-0 top-0 h-[80%]"
-          style={{
-            background:
-              "radial-gradient(60% 60% at 50% 0%, rgba(163, 19, 42, 0.25) 0%, rgba(7, 8, 11, 0) 70%)",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#07080b]" />
-      </div>
+    <>
+      <section className="relative isolate flex min-h-[760px] flex-col overflow-hidden bg-[#07080b] lg:h-[100svh]">
+        {/* Full-bleed signal mesh + gradient mask */}
+        <div className="absolute inset-0">
+          <HeroSignal />
+          {/* Left-side darken so the copy stays legible over the canvas */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(90deg, #07080b 0%, rgba(7,8,11,0.92) 28%, rgba(7,8,11,0.55) 50%, rgba(7,8,11,0.10) 78%, rgba(7,8,11,0) 100%)",
+            }}
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-0 h-[60%]"
+            style={{
+              background:
+                "radial-gradient(60% 60% at 50% 0%, rgba(163, 19, 42, 0.22) 0%, rgba(7, 8, 11, 0) 70%)",
+            }}
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-[#07080b]"
+          />
+          <div className="bg-grid pointer-events-none absolute inset-0 opacity-30" />
+        </div>
 
-      <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col px-6 pt-32 pb-12 lg:px-10">
-        {/* Status bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease }}
-          className="flex flex-wrap items-center gap-3 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-[#a8a39a]"
-        >
-          <span className="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-[#e21a3a]" />
-          <span className="text-[#f0cc7a]">Mission Active</span>
-          <span className="text-[#a8a39a]/50">·</span>
-          <span>SDVOSB · CVE Verified</span>
-          <span className="text-[#a8a39a]/50">·</span>
-          <span>Established 2010</span>
-        </motion.div>
+        {/* Top status bar */}
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-32 lg:px-10">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease }}
+            className="flex flex-wrap items-center gap-3 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-[#a8a39a]"
+          >
+            <span className="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-[#e21a3a]" />
+            <span className="text-[#f0cc7a]">Mission Active</span>
+            <span className="text-[#a8a39a]/50">·</span>
+            <span>SDVOSB · CVE Verified</span>
+            <span className="text-[#a8a39a]/50">·</span>
+            <span>Established 2010</span>
+          </motion.div>
+        </div>
 
-        <div className="grid flex-1 items-center gap-10 pt-10 lg:grid-cols-12 lg:gap-6 lg:pt-0">
-          {/* Copy */}
-          <div className="relative z-10 lg:col-span-6">
+        {/* Centered content (left-anchored on desktop, copy occupies ~58%) */}
+        <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 items-center px-6 lg:px-10">
+          <div className="w-full max-w-[760px]">
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease, delay: 0.05 }}
-              className="font-[var(--font-display)] text-balance text-[40px] font-extrabold leading-[0.95] tracking-tight sm:text-[56px] lg:text-[80px] xl:text-[92px]"
+              className="font-[var(--font-display)] text-balance text-[44px] font-black uppercase leading-[0.92] tracking-[-0.01em] sm:text-[60px] lg:text-[88px] xl:text-[104px]"
             >
-              ENGINEERED FOR
+              Engineered for
               <br />
               <span className="bg-gradient-to-r from-[#f0cc7a] via-[#d4ae5b] to-[#8c7332] bg-clip-text text-transparent">
-                THE MISSION
+                the mission
               </span>
               <br />
-              <span className="text-[#f5f4ef]/70">THAT MATTERS</span>
+              <span className="text-[#f5f4ef]/65">that matters</span>
             </motion.h1>
 
             <motion.p
@@ -84,11 +108,13 @@ export function Hero() {
               className="mt-7 flex flex-wrap gap-2"
             >
               {PILLARS.map((p) => (
-                <li
-                  key={p}
-                  className="rounded-full border border-[#d4ae5b]/30 bg-[#d4ae5b]/[0.04] px-3 py-1.5 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] text-[#f0cc7a]"
-                >
-                  {p}
+                <li key={p}>
+                  <Magnetic strength={6} tilt={2}>
+                    <span className="group inline-flex cursor-default items-center gap-2 rounded-full border border-[#d4ae5b]/30 bg-[#d4ae5b]/[0.04] px-3 py-1.5 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] text-[#f0cc7a] transition-colors hover:border-[#d4ae5b]/60 hover:bg-[#d4ae5b]/[0.10]">
+                      <span className="h-1 w-1 rounded-full bg-[#d4ae5b] transition-transform group-hover:scale-150" />
+                      {p}
+                    </span>
+                  </Magnetic>
                 </li>
               ))}
             </motion.ul>
@@ -115,34 +141,43 @@ export function Hero() {
               </Link>
             </motion.div>
           </div>
-
-          {/* Globe */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, ease, delay: 0.3 }}
-            className="relative aspect-square w-full lg:col-span-6 lg:aspect-auto lg:h-[640px]"
-          >
-            <HeroSignal />
-          </motion.div>
         </div>
 
-        {/* Stats strip */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease, delay: 0.6 }}
-          className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-md sm:grid-cols-4"
-        >
-          <Stat n="14+" label="Years on Mission" />
-          <Stat n="100%" label="Cleared Workforce" />
-          <Stat n="DoD · IC" label="Customer Set" />
-          <Stat n="SDVOSB" label="CVE Certified" />
-        </motion.div>
-      </div>
+        {/* Stats strip — flush with bottom of viewport on desktop */}
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-8 lg:px-10 lg:pb-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease, delay: 0.6 }}
+            className="grid grid-cols-2 gap-3 sm:grid-cols-4"
+          >
+            {STATS.map((s, i) => (
+              <Magnetic key={s.label} strength={8} tilt={3}>
+                <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#07080b]/65 px-5 py-4 backdrop-blur-md transition-colors hover:border-[#d4ae5b]/40 hover:bg-[#0d1015]/80">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <div className="font-[var(--font-display)] text-2xl font-black uppercase tracking-tight text-[#f0cc7a] sm:text-3xl">
+                      {s.n}
+                    </div>
+                    <div className="font-[var(--font-mono)] text-[9px] uppercase tracking-[0.22em] text-[#a8a39a]/70">
+                      0{i + 1}
+                    </div>
+                  </div>
+                  <div className="mt-1 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] text-[#a8a39a]">
+                    {s.label}
+                  </div>
+                  <span
+                    aria-hidden
+                    className="absolute inset-x-4 bottom-0 h-px origin-left scale-x-0 bg-gradient-to-r from-[#d4ae5b]/60 to-transparent transition-transform duration-500 group-hover:scale-x-100"
+                  />
+                </div>
+              </Magnetic>
+            ))}
+          </motion.div>
+        </div>
+      </section>
 
-      {/* Customer marquee */}
-      <div className="relative border-t border-white/5 bg-black/40 backdrop-blur-md">
+      {/* Customer marquee — outside the 100svh hero so the stats can be flush */}
+      <div className="relative border-y border-white/5 bg-black/40 backdrop-blur-md">
         <div className="overflow-hidden py-4">
           <div className="marquee flex w-max items-center gap-12 whitespace-nowrap font-[var(--font-mono)] text-[11px] uppercase tracking-[0.32em] text-[#a8a39a]/70">
             {Array.from({ length: 2 }).map((_, i) => (
@@ -169,19 +204,6 @@ export function Hero() {
           </div>
         </div>
       </div>
-    </section>
-  );
-}
-
-function Stat({ n, label }: { n: string; label: string }) {
-  return (
-    <div className="flex flex-col gap-1 bg-[#07080b]/60 px-5 py-5">
-      <div className="font-[var(--font-display)] text-2xl font-extrabold text-[#f0cc7a] sm:text-3xl">
-        {n}
-      </div>
-      <div className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] text-[#a8a39a]">
-        {label}
-      </div>
-    </div>
+    </>
   );
 }
