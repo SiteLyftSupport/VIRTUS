@@ -22,13 +22,13 @@ export function Hero() {
         {/* Full-bleed signal mesh + gradient mask */}
         <div className="absolute inset-0">
           <HeroSignal />
-          {/* Left-side darken so the copy stays legible over the canvas */}
+          {/* Left-side darken so the copy stays legible over the canvas (alphas reduced ~10%) */}
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0"
             style={{
               background:
-                "linear-gradient(90deg, #07080b 0%, rgba(7,8,11,0.92) 28%, rgba(7,8,11,0.55) 50%, rgba(7,8,11,0.10) 78%, rgba(7,8,11,0) 100%)",
+                "linear-gradient(90deg, rgba(7,8,11,0.9) 0%, rgba(7,8,11,0.83) 28%, rgba(7,8,11,0.50) 50%, rgba(7,8,11,0.09) 78%, rgba(7,8,11,0) 100%)",
             }}
           />
           <div
@@ -36,7 +36,7 @@ export function Hero() {
             className="pointer-events-none absolute inset-x-0 top-0 h-[60%]"
             style={{
               background:
-                "radial-gradient(60% 60% at 50% 0%, rgba(163, 19, 42, 0.22) 0%, rgba(7, 8, 11, 0) 70%)",
+                "radial-gradient(60% 60% at 50% 0%, rgba(163, 19, 42, 0.20) 0%, rgba(7, 8, 11, 0) 70%)",
             }}
           />
           <div
