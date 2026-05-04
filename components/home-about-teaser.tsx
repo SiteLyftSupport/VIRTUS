@@ -26,7 +26,7 @@ export function HomeAboutTeaser() {
             className="flex flex-col justify-center lg:col-span-7"
           >
             <SectionEyebrow number="01" label="About Virtus" />
-            <h2 className="font-[var(--font-display)] text-balance text-4xl font-extrabold uppercase leading-[1.0] tracking-tight sm:text-5xl lg:text-[32px]">
+            <h2 className="font-[var(--font-display)] text-balance text-4xl leading-[1.0] tracking-tight sm:text-5xl lg:text-[52px]">
               Founded by IC and DoD professionals.
               <span className="block text-[#d4ae5b]">Built for the mission.</span>
             </h2>

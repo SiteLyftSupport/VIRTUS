@@ -46,7 +46,7 @@ export function AboutStory() {
         >
           <div className="lg:col-span-7">
             <SectionEyebrow number="01" label="About Virtus" />
-            <h1 className="font-[var(--font-display)] text-balance text-5xl font-extrabold leading-[1.0] tracking-tight sm:text-4xl lg:text-[28px]">
+            <h1 className="font-[var(--font-display)] text-balance text-5xl font-extrabold leading-[1.0] tracking-tight sm:text-4xl lg:text-[52px]">
               A small business
               <span className="block text-[#d4ae5b]">with a heavy weight class.</span>
             </h1>
@@ -161,7 +161,7 @@ export function Timeline() {
           className="max-w-2xl"
         >
           <SectionEyebrow number="03" label="History" />
-          <h2 className="font-[var(--font-display)] text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-[32px]">
+          <h2 className="font-[var(--font-display)] text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
             Fifteen years on
             <span className="block text-[#d4ae5b]">the same standard.</span>
           </h2>
@@ -244,7 +244,7 @@ export function FoundingPrinciples() {
           className="max-w-2xl"
         >
           <SectionEyebrow number="04" label="Founding Principles" />
-          <h2 className="font-[var(--font-display)] text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-[32px]">
+          <h2 className="font-[var(--font-display)] text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
             What "Virtus" means.
           </h2>
           <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-[#a8a39a]">
