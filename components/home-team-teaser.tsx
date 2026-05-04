@@ -68,7 +68,7 @@ function TeamRow({
                 <div className="font-[var(--font-mono)] text-[9px] uppercase tracking-[0.28em] text-[#d4ae5b]">
                   {m.role}
                 </div>
-                <h3 className="mt-1 font-[var(--font-display)] text-xl uppercase tracking-tight text-[#f5f4ef] sm:text-2xl">
+                <h3 className="mt-1 font-[var(--font-tactical)] text-xl uppercase tracking-tight text-[#f5f4ef] sm:text-2xl">
                   {m.name}
                 </h3>
               </div>
@@ -130,7 +130,7 @@ export function HomeTeamTeaser() {
           >
             <div>
               <SectionEyebrow number="03" label="The Team" />
-              <h2 className="font-[var(--font-display)] text-balance text-4xl leading-[1.0] tracking-tight sm:text-5xl lg:text-[52px]">
+              <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-bold leading-[1.0] tracking-tight sm:text-5xl lg:text-[52px]">
                 Senior practitioners.
                 <span className="block text-[#d4ae5b]">From day one.</span>
               </h2>
@@ -195,7 +195,7 @@ export function HomeTeamTeaser() {
                 </div>
                 <h2
                   id="home-team-modal-title"
-                  className="mt-3 font-[var(--font-display)] text-3xl font-extrabold uppercase leading-tight tracking-tight text-[#f5f4ef] sm:text-4xl lg:text-5xl"
+                  className="mt-3 font-[var(--font-tactical)] text-3xl font-extrabold uppercase leading-tight tracking-tight text-[#f5f4ef] sm:text-4xl lg:text-5xl"
                 >
                   {open.name}
                 </h2>
@@ -245,7 +245,7 @@ export function HomeTeamTeaser() {
 function Stat({ n, label }: { n: string; label: string }) {
   return (
     <div className="bg-[#07080b]/70 px-4 py-4">
-      <div className="font-[var(--font-display)] text-2xl font-extrabold text-[#f0cc7a]">
+      <div className="font-[var(--font-tactical)] text-2xl font-extrabold text-[#f0cc7a]">
         {n}
       </div>
       <div className="mt-1 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] text-[#a8a39a]">

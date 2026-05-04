@@ -39,7 +39,7 @@ export function CareersGrid() {
             </div>
 
             <div className="flex flex-1 flex-col p-6">
-              <h3 className="font-[var(--font-display)] text-2xl font-semibold tracking-tight text-[#f5f4ef]">
+              <h3 className="font-[var(--font-tactical)] text-2xl font-semibold tracking-tight text-[#f5f4ef]">
                 {c.title}
               </h3>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-[#a8a39a]">

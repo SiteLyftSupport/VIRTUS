@@ -69,7 +69,7 @@ export function WhyVirtus() {
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         <div className="max-w-3xl">
           <SectionEyebrow number="04" label="Why Virtus" />
-          <h2 className="font-[var(--font-display)] text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
+          <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
             A small business with the
             <span className="block text-[#d4ae5b]">posture of a prime.</span>
           </h2>
@@ -93,7 +93,7 @@ export function WhyVirtus() {
               <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl border border-[#d4ae5b]/30 bg-[#d4ae5b]/5 text-[#f0cc7a]">
                 <Icon className="h-5 w-5" />
               </div>
-              <h3 className="font-[var(--font-display)] text-xl font-semibold tracking-tight text-[#f5f4ef]">
+              <h3 className="font-[var(--font-tactical)] text-xl font-semibold tracking-tight text-[#f5f4ef]">
                 {title}
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-[#a8a39a]">

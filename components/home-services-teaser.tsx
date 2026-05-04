@@ -31,7 +31,7 @@ export function HomeServicesTeaser() {
         >
           <div className="lg:col-span-7">
             <SectionEyebrow number="02" label="Services" />
-            <h2 className="font-[var(--font-display)] text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
+            <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
               Thirteen disciplines.
               <span className="block text-[#d4ae5b]">One operating standard.</span>
             </h2>
@@ -82,7 +82,7 @@ export function HomeServicesTeaser() {
                     </span>
                   </div>
                   <div className="flex flex-1 flex-col p-6">
-                    <h3 className="font-[var(--font-display)] text-base font-bold leading-snug tracking-tight text-[#f5f4ef]">
+                    <h3 className="font-[var(--font-tactical)] text-base font-bold leading-snug tracking-tight text-[#f5f4ef]">
                       {s.name}
                     </h3>
                     <p className="mt-2 flex-1 text-sm leading-relaxed text-[#a8a39a]">

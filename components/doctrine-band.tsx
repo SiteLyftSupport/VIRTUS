@@ -33,7 +33,7 @@ export function DoctrineBand() {
             <span className="h-px w-10 bg-[#d4ae5b]/40" />
             <span>Doctrine</span>
           </div>
-          <h2 className="font-[var(--font-display)] text-balance text-3xl font-semibold leading-[1.1] tracking-tight text-[#f5f4ef] sm:text-4xl lg:text-5xl">
+          <h2 className="font-[var(--font-tactical)] text-balance text-3xl font-bold leading-[1.1] tracking-tight text-[#f5f4ef] sm:text-4xl lg:text-5xl">
             "Virtus" is the Roman virtue of valor, courage, character, and
             worth.
             <span className="mt-4 block text-[#d4ae5b]">

@@ -80,7 +80,7 @@ export function PastPerformance() {
         <div className="grid items-stretch gap-10 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <SectionEyebrow number="05" label="Past Performance" />
-            <h2 className="font-[var(--font-display)] text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
+            <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
               Programs that
               <span className="block text-[#d4ae5b]">moved the needle.</span>
             </h2>
@@ -105,7 +105,7 @@ export function PastPerformance() {
                     <span className="text-[#d4ae5b]">{e.customer}</span>
                     <span className="text-[#a8a39a]/70">{e.period}</span>
                   </div>
-                  <h3 className="font-[var(--font-display)] text-2xl font-semibold tracking-tight text-[#f5f4ef]">
+                  <h3 className="font-[var(--font-tactical)] text-2xl font-semibold tracking-tight text-[#f5f4ef]">
                     {e.title}
                   </h3>
                   <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#a8a39a]">
@@ -117,7 +117,7 @@ export function PastPerformance() {
                         <div className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] text-[#a8a39a]">
                           {k}
                         </div>
-                        <div className="mt-1 font-[var(--font-display)] text-lg font-semibold text-[#f0cc7a]">
+                        <div className="mt-1 font-[var(--font-tactical)] text-lg font-semibold text-[#f0cc7a]">
                           {v}
                         </div>
                       </div>
@@ -140,7 +140,7 @@ export function PastPerformance() {
               className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] p-8"
             >
               <Quote className="absolute right-6 top-6 h-10 w-10 text-[#d4ae5b]/20" />
-              <blockquote className="font-[var(--font-display)] text-pretty text-xl leading-snug text-[#f5f4ef]/95">
+              <blockquote className="font-[var(--font-tactical)] text-pretty text-xl leading-snug text-[#f5f4ef]/95">
                 "{t.quote}"
               </blockquote>
               <figcaption className="mt-6 font-[var(--font-mono)] text-[11px] uppercase tracking-[0.22em] text-[#d4ae5b]">

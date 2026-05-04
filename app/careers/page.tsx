@@ -34,7 +34,7 @@ export default function CareersPage() {
         <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
           <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <h2 className="font-[var(--font-display)] text-2xl font-semibold tracking-tight text-[#f5f4ef] sm:text-3xl">
+              <h2 className="font-[var(--font-tactical)] text-2xl font-semibold tracking-tight text-[#f5f4ef] sm:text-3xl">
                 Open positions
               </h2>
               <p className="mt-2 max-w-xl text-sm leading-relaxed text-[#a8a39a]">

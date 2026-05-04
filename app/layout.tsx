@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Audiowide, Rajdhani, JetBrains_Mono } from "next/font/google";
+import { Inter, Audiowide, Oxanium, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -18,12 +18,14 @@ const display = Audiowide({
   weight: "400",
 });
 
-// Sub-display: Rajdhani — narrow, geometric, defense/HUD aesthetic.
-// Used for sub-heads and tactical labels where Audiowide would be too loud.
-const subDisplay = Rajdhani({
+// Sub-display: Oxanium — futuristic / tech sans with a full weight range.
+// Used for every section h2 + sub-heading. Has real bold weights so
+// boldness renders consistently across browsers (Audiowide is single
+// weight, which forced synthetic bold and looked uneven).
+const subDisplay = Oxanium({
   variable: "--font-tactical",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["500", "600", "700", "800"],
 });
 
 const mono = JetBrains_Mono({

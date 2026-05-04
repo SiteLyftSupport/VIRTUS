@@ -52,7 +52,7 @@ export function ServicesGrid() {
                 </span>
               </div>
               <div className="flex flex-1 flex-col gap-3 p-6">
-                <h3 className="font-[var(--font-display)] text-lg font-semibold leading-snug tracking-tight text-[#f5f4ef]">
+                <h3 className="font-[var(--font-tactical)] text-lg font-semibold leading-snug tracking-tight text-[#f5f4ef]">
                   {s.name}
                 </h3>
                 <p className="flex-1 text-sm leading-relaxed text-[#a8a39a]">
@@ -108,7 +108,7 @@ function ServiceModalContent({ service }: { service: Service }) {
           </div>
           <h2
             id="service-modal-title"
-            className="mt-3 font-[var(--font-display)] text-3xl font-semibold leading-tight tracking-tight text-[#f5f4ef] sm:text-4xl"
+            className="mt-3 font-[var(--font-tactical)] text-3xl font-semibold leading-tight tracking-tight text-[#f5f4ef] sm:text-4xl"
           >
             {service.name}
           </h2>

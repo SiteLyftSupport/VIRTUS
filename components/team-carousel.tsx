@@ -89,7 +89,7 @@ export function TeamCarousel() {
           className="mx-auto max-w-3xl text-center"
         >
           <SectionEyebrow number="03" label="The Team" />
-          <h2 className="font-[var(--font-display)] text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
+          <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
             The people we send
             <span className="block text-[#d4ae5b]">define the work.</span>
           </h2>
@@ -172,7 +172,7 @@ export function TeamCarousel() {
                       <div className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-[#d4ae5b]">
                         {m.role}
                       </div>
-                      <div className="mt-1 font-[var(--font-display)] text-2xl font-extrabold tracking-tight text-[#f5f4ef]">
+                      <div className="mt-1 font-[var(--font-tactical)] text-2xl font-extrabold tracking-tight text-[#f5f4ef]">
                         {m.name}
                       </div>
                       {isActive && (
@@ -273,7 +273,7 @@ function TeamModalContent({ member }: { member: Member }) {
           </div>
           <h2
             id="team-modal-title"
-            className="mt-3 font-[var(--font-display)] text-3xl font-extrabold leading-tight tracking-tight text-[#f5f4ef] sm:text-4xl lg:text-5xl"
+            className="mt-3 font-[var(--font-tactical)] text-3xl font-extrabold leading-tight tracking-tight text-[#f5f4ef] sm:text-4xl lg:text-5xl"
           >
             {member.name}
           </h2>

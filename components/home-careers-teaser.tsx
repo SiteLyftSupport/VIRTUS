@@ -23,7 +23,7 @@ export function HomeCareersTeaser() {
             className="lg:col-span-7"
           >
             <SectionEyebrow number="04" label="Careers" />
-            <h2 className="font-[var(--font-display)] text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
+            <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
               Cleared, senior, and
               <span className="block text-[#d4ae5b]">on the mission.</span>
             </h2>
@@ -64,7 +64,7 @@ export function HomeCareersTeaser() {
                   </span>
                 </div>
                 <div className="flex flex-1 flex-col p-7">
-                  <h3 className="font-[var(--font-display)] text-2xl font-semibold tracking-tight text-[#f5f4ef]">
+                  <h3 className="font-[var(--font-tactical)] text-2xl font-semibold tracking-tight text-[#f5f4ef]">
                     {c.title}
                   </h3>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-[#a8a39a]">

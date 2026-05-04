@@ -124,7 +124,7 @@ export function Capabilities() {
               transition={{ duration: 0.7, ease }}
             >
               <SectionEyebrow number="02" label="Capabilities" />
-              <h2 className="font-[var(--font-display)] text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
+              <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
                 Five disciplines.
                 <span className="block text-[#d4ae5b]">One mindset.</span>
               </h2>
@@ -163,7 +163,7 @@ export function Capabilities() {
                       >
                         <Icon className="h-5 w-5" />
                       </span>
-                      <span className="flex-1 font-[var(--font-display)] text-xl font-semibold tracking-tight sm:text-2xl">
+                      <span className="flex-1 font-[var(--font-tactical)] text-xl font-semibold tracking-tight sm:text-2xl">
                         {c.title}
                       </span>
                       <ArrowUpRight

@@ -26,7 +26,7 @@ export function HomeAboutTeaser() {
             className="flex flex-col justify-center lg:col-span-7"
           >
             <SectionEyebrow number="01" label="About Virtus" />
-            <h2 className="font-[var(--font-display)] text-balance text-4xl leading-[1.0] tracking-tight sm:text-5xl lg:text-[52px]">
+            <h2 className="font-[var(--font-tactical)] text-balance text-4xl font-bold leading-[1.0] tracking-tight sm:text-5xl lg:text-[52px]">
               Founded by IC and DoD professionals.
               <span className="block text-[#d4ae5b]">Built for the mission.</span>
             </h2>
@@ -70,7 +70,7 @@ export function HomeAboutTeaser() {
                 <div className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-[#d4ae5b]">
                   CVE-Certified · CMMC 2.0 · SAM Active
                 </div>
-                <div className="font-[var(--font-display)] text-2xl font-bold uppercase tracking-tight text-[#f5f4ef] sm:text-3xl">
+                <div className="font-[var(--font-tactical)] text-2xl font-bold uppercase tracking-tight text-[#f5f4ef] sm:text-3xl">
                   Virtus · Vincit · Veritas
                 </div>
               </div>
