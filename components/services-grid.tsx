@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
 import { SERVICES } from "@/lib/services";
@@ -12,7 +13,7 @@ export function ServicesGrid() {
   const [open, setOpen] = useState<string | null>(null);
 
   return (
-    <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {SERVICES.map((s, i) => {
         const isOpen = open === s.slug;
         return (
@@ -29,15 +30,30 @@ export function ServicesGrid() {
                 : "border-white/10 hover:border-[#d4ae5b]/30"
             }`}
           >
+            {/* Image header */}
+            <div className="relative aspect-[16/9] overflow-hidden border-b border-white/10">
+              <Image
+                src={s.image}
+                alt=""
+                fill
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#07080b] via-[#07080b]/60 to-transparent" />
+              <span className="absolute left-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#d4ae5b]/30 bg-[#07080b]/70 text-[#f0cc7a] backdrop-blur-md">
+                <ServiceIcon name={s.iconName} className="h-5 w-5" />
+              </span>
+              <span className="absolute right-4 top-4 rounded-full border border-white/10 bg-[#07080b]/70 px-2.5 py-1 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] text-[#a8a39a] backdrop-blur-md">
+                S·{String(i + 1).padStart(2, "0")}
+              </span>
+            </div>
+
             <button
               type="button"
               onClick={() => setOpen(isOpen ? null : s.slug)}
               className="flex w-full items-start gap-4 p-6 text-left"
               aria-expanded={isOpen}
             >
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#d4ae5b]/30 bg-[#d4ae5b]/5 text-[#f0cc7a]">
-                <ServiceIcon name={s.iconName} className="h-5 w-5" />
-              </span>
               <span className="flex-1">
                 <span className="block font-[var(--font-display)] text-base font-semibold tracking-tight text-[#f5f4ef]">
                   {s.name}

@@ -21,13 +21,13 @@ export function About() {
     <section id="about" className="relative overflow-hidden border-t border-white/5 bg-[#07080b] py-28 lg:py-40">
       <div className="bg-grid pointer-events-none absolute inset-0 opacity-30" />
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="grid gap-16 lg:grid-cols-12">
+        <div className="grid items-stretch gap-16 lg:grid-cols-12">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7, ease }}
-            className="lg:col-span-5"
+            className="flex flex-col lg:col-span-5"
           >
             <SectionEyebrow number="01" label="About Virtus" />
             <h2 className="font-[var(--font-display)] text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
@@ -55,6 +55,7 @@ export function About() {
               <Fact k="Customer Set" v="DoD · IC · Federal" />
               <Fact k="HQ" v="McLean, Virginia" />
             </dl>
+            <div className="mt-auto" />
           </motion.div>
 
           <motion.div
@@ -62,7 +63,7 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease, delay: 0.1 }}
-            className="lg:col-span-7"
+            className="flex flex-col lg:col-span-7"
           >
             <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10">
               <Image
@@ -89,15 +90,15 @@ export function About() {
               </div>
             </div>
 
-            <div className="mt-10">
+            <div className="mt-10 flex flex-1 flex-col">
               <div className="mb-5 font-[var(--font-mono)] text-[11px] uppercase tracking-[0.28em] text-[#d4ae5b]">
                 Founding Principles
               </div>
-              <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+              <ul className="grid flex-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
                 {VALUES.map(({ icon: Icon, label, desc }) => (
                   <li
                     key={label}
-                    className="group rounded-xl border border-white/10 bg-white/[0.02] p-4 transition-colors hover:border-[#d4ae5b]/30 hover:bg-[#d4ae5b]/[0.04]"
+                    className="group flex flex-col rounded-xl border border-white/10 bg-white/[0.02] p-4 transition-colors hover:border-[#d4ae5b]/30 hover:bg-[#d4ae5b]/[0.04]"
                   >
                     <Icon className="h-5 w-5 text-[#d4ae5b] transition-transform group-hover:scale-110" />
                     <div className="mt-3 font-[var(--font-display)] text-sm font-semibold tracking-wider text-[#f5f4ef]">

@@ -9,6 +9,7 @@ import {
   CheckCircle2,
   Sparkles,
 } from "lucide-react";
+import Image from "next/image";
 import { CAREERS, getCareer } from "@/lib/careers";
 import { SITE } from "@/lib/site";
 import { SectionEyebrow } from "@/components/section-eyebrow";
@@ -47,7 +48,19 @@ export default async function CareerPage({
     <>
       {/* Hero */}
       <section className="relative isolate overflow-hidden border-b border-white/5 bg-[#07080b]">
-        <div className="bg-grid pointer-events-none absolute inset-0 opacity-30" />
+        <div className="absolute inset-0">
+          <Image
+            src={career.image}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#07080b]/60 via-[#07080b]/85 to-[#07080b]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#07080b] via-transparent to-[#07080b]/60" />
+        </div>
+        <div className="bg-grid pointer-events-none absolute inset-0 opacity-25" />
         <div className="radial-spotlight pointer-events-none absolute inset-0" />
         <div className="relative mx-auto max-w-5xl px-6 pt-36 pb-20 lg:px-10 lg:pt-44 lg:pb-28">
           <Link

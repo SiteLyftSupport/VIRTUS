@@ -4,16 +4,17 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Shield } from "lucide-react";
+import { media } from "@/lib/media";
 
-const HERO_IMG =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_3DGemBMxT4FfcPiEmry1eOUH5l4/hf_20260504_175437_ad6525a4-1c97-48e7-ad02-9e82496e84a3.png";
+const HERO_IMG = media.heroPrimary;
+const HERO_VIDEO = media.heroVideo;
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export function Hero() {
   return (
     <section className="relative isolate overflow-hidden">
-      {/* Background image */}
+      {/* Background — video with image fallback */}
       <div className="absolute inset-0">
         <Image
           src={HERO_IMG}
@@ -22,6 +23,16 @@ export function Hero() {
           priority
           sizes="100vw"
           className="object-cover opacity-40"
+        />
+        <video
+          src={HERO_VIDEO}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover opacity-50"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#07080b]/40 via-[#07080b]/70 to-[#07080b]" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#07080b] via-transparent to-[#07080b]/50" />

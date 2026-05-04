@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import {
   ShieldCheck,
   Building2,
@@ -10,6 +11,7 @@ import {
   HandCoins,
 } from "lucide-react";
 import { SectionEyebrow } from "./section-eyebrow";
+import { media } from "@/lib/media";
 
 const REASONS = [
   {
@@ -50,9 +52,20 @@ export function WhyVirtus() {
   return (
     <section
       id="why"
-      className="relative overflow-hidden border-t border-white/5 bg-gradient-to-b from-[#07080b] via-[#0a0c11] to-[#07080b] py-28 lg:py-40"
+      className="relative isolate overflow-hidden border-t border-white/5 bg-[#07080b] py-28 lg:py-40"
     >
-      <div className="circuitry pointer-events-none absolute inset-0 opacity-25" />
+      <div className="absolute inset-0">
+        <Image
+          src={media.spartanPlinth}
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover opacity-25"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#07080b]/85 via-[#07080b]/85 to-[#07080b]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#07080b] via-transparent to-[#07080b]/70" />
+        <div className="circuitry absolute inset-0 opacity-15" />
+      </div>
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         <div className="max-w-3xl">
           <SectionEyebrow number="04" label="Why Virtus" />

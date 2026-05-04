@@ -34,13 +34,13 @@ export function Contact() {
       </div>
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="grid gap-12 lg:grid-cols-12">
+        <div className="grid items-stretch gap-12 lg:grid-cols-12">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7, ease }}
-            className="lg:col-span-6"
+            className="flex flex-col lg:col-span-6"
           >
             <SectionEyebrow number="06" label="Engage Virtus" />
             <h2 className="font-[var(--font-display)] text-balance text-5xl font-semibold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
@@ -53,7 +53,7 @@ export function Contact() {
               Senior leadership responds personally.
             </p>
 
-            <ul className="mt-10 space-y-4">
+            <ul className="mt-10 flex flex-1 flex-col gap-3">
               <ContactRow
                 icon={<Phone className="h-4 w-4" />}
                 label="Direct"
@@ -97,7 +97,7 @@ export function Contact() {
               action="mailto:lrhodes@virtusts.com"
               method="post"
               encType="text/plain"
-              className="rounded-3xl border border-white/10 bg-[#07080b]/80 p-8 backdrop-blur-md gold-border"
+              className="flex h-full flex-col rounded-3xl border border-white/10 bg-[#07080b]/80 p-8 backdrop-blur-md gold-border"
             >
               <div className="mb-6 flex items-center justify-between">
                 <div className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.28em] text-[#d4ae5b]">
