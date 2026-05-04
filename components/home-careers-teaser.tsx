@@ -18,12 +18,12 @@ export function HomeCareersTeaser() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: false, margin: "-100px" }}
             transition={{ duration: 0.7, ease }}
             className="lg:col-span-7"
           >
             <SectionEyebrow number="04" label="Careers" />
-            <h2 className="font-[var(--font-display)] text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-[56px]">
+            <h2 className="font-[var(--font-display)] text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-[28px]">
               Cleared, senior, and
               <span className="block text-[#d4ae5b]">on the mission.</span>
             </h2>
@@ -42,7 +42,7 @@ export function HomeCareersTeaser() {
               key={c.slug}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: false, margin: "-80px" }}
               transition={{ duration: 0.5, ease, delay: i * 0.05 }}
               className="h-full"
             >

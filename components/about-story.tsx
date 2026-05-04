@@ -46,7 +46,7 @@ export function AboutStory() {
         >
           <div className="lg:col-span-7">
             <SectionEyebrow number="01" label="About Virtus" />
-            <h1 className="font-[var(--font-display)] text-balance text-5xl font-extrabold leading-[1.0] tracking-tight sm:text-6xl lg:text-[88px]">
+            <h1 className="font-[var(--font-display)] text-balance text-5xl font-extrabold leading-[1.0] tracking-tight sm:text-4xl lg:text-[28px]">
               A small business
               <span className="block text-[#d4ae5b]">with a heavy weight class.</span>
             </h1>
@@ -94,7 +94,7 @@ export function FounderStatement() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: false, margin: "-100px" }}
           transition={{ duration: 0.7, ease }}
         >
           <SectionEyebrow number="02" label="From the Founder" />
@@ -156,12 +156,12 @@ export function Timeline() {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: false, margin: "-100px" }}
           transition={{ duration: 0.7, ease }}
           className="max-w-2xl"
         >
           <SectionEyebrow number="03" label="History" />
-          <h2 className="font-[var(--font-display)] text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-[64px]">
+          <h2 className="font-[var(--font-display)] text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-[32px]">
             Fifteen years on
             <span className="block text-[#d4ae5b]">the same standard.</span>
           </h2>
@@ -173,7 +173,7 @@ export function Timeline() {
               key={t.year}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: false, margin: "-80px" }}
               transition={{ duration: 0.5, ease, delay: (i % 3) * 0.06 }}
               className="group relative flex flex-col gap-4 bg-[#07080b]/70 p-7 transition-colors hover:bg-[#0d1015]"
             >
@@ -239,12 +239,12 @@ export function FoundingPrinciples() {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: false, margin: "-100px" }}
           transition={{ duration: 0.7, ease }}
           className="max-w-2xl"
         >
           <SectionEyebrow number="04" label="Founding Principles" />
-          <h2 className="font-[var(--font-display)] text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-[64px]">
+          <h2 className="font-[var(--font-display)] text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-[32px]">
             What "Virtus" means.
           </h2>
           <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-[#a8a39a]">
@@ -260,7 +260,7 @@ export function FoundingPrinciples() {
               key={v.label}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: false, margin: "-80px" }}
               transition={{ duration: 0.5, ease, delay: i * 0.06 }}
               className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:border-[#d4ae5b]/40 hover:bg-[#d4ae5b]/[0.04]"
             >
@@ -288,7 +288,7 @@ export function AboutCTA() {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: false, margin: "-80px" }}
           transition={{ duration: 0.7, ease }}
         >
           <h3 className="font-[var(--font-display)] text-balance text-3xl font-extrabold leading-[1.1] tracking-tight text-[#f5f4ef] sm:text-4xl lg:text-5xl">

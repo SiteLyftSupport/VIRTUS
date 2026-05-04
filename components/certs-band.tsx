@@ -50,7 +50,7 @@ export function CertsBand() {
               key={name}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: false, margin: "-80px" }}
               transition={{ duration: 0.5, ease, delay: i * 0.05 }}
               className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-6"
             >

@@ -25,13 +25,13 @@ export function HomeServicesTeaser() {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: false, margin: "-100px" }}
           transition={{ duration: 0.7, ease }}
           className="grid items-end gap-8 lg:grid-cols-12"
         >
           <div className="lg:col-span-7">
             <SectionEyebrow number="02" label="Services" />
-            <h2 className="font-[var(--font-display)] text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-[72px]">
+            <h2 className="font-[var(--font-display)] text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-[52px]">
               Thirteen disciplines.
               <span className="block text-[#d4ae5b]">One operating standard.</span>
             </h2>
@@ -59,7 +59,7 @@ export function HomeServicesTeaser() {
               key={s.slug}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: false, margin: "-80px" }}
               transition={{ duration: 0.5, ease, delay: (i % 3) * 0.06 }}
               className="h-full"
             >

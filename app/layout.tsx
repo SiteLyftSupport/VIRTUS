@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Big_Shoulders, JetBrains_Mono } from "next/font/google";
+import { Inter, Audiowide, Rajdhani, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -9,13 +9,21 @@ const sans = Inter({
   subsets: ["latin"],
 });
 
-// Display: Big Shoulders Display — wide, bold geometric letterforms that
-// mirror the industrial / inscribed feel of the printed VIRTUS wordmark
-// far better than Saira (which read as too neutral against the brand).
-const display = Big_Shoulders({
+// Display: Audiowide — techy/military letterforms with the signature
+// horizontal grooves that mirror the printed VIRTUS wordmark. Single
+// weight only, but it reads as clearly bold and clearly tech.
+const display = Audiowide({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["600", "700", "800", "900"],
+  weight: "400",
+});
+
+// Sub-display: Rajdhani — narrow, geometric, defense/HUD aesthetic.
+// Used for sub-heads and tactical labels where Audiowide would be too loud.
+const subDisplay = Rajdhani({
+  variable: "--font-tactical",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
 });
 
 const mono = JetBrains_Mono({
@@ -58,7 +66,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${sans.variable} ${display.variable} ${mono.variable} antialiased`}
+      className={`${sans.variable} ${display.variable} ${subDisplay.variable} ${mono.variable} antialiased`}
     >
       <body className="min-h-screen bg-[#07080b] text-[#f5f4ef]">
         <SiteHeader />

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
@@ -10,6 +10,97 @@ import { Modal } from "./modal";
 import { SectionEyebrow } from "./section-eyebrow";
 
 const ease = [0.22, 1, 0.36, 1] as const;
+
+/**
+ * One team row in the sticky-scroll list. Uses useInView with a tight
+ * vertical band so the card scales up and de-blurs only when it's
+ * properly in frame (and reverses when it leaves).
+ */
+function TeamRow({
+  m,
+  i,
+  onOpen,
+}: {
+  m: Member;
+  i: number;
+  onOpen: (m: Member) => void;
+}) {
+  const ref = useRef<HTMLLIElement>(null);
+  const inView = useInView(ref, {
+    margin: "-30% 0px -30% 0px",
+  });
+  return (
+    <motion.li
+      ref={ref}
+      animate={{
+        scale: inView ? 1 : 0.94,
+        opacity: inView ? 1 : 0.45,
+        filter: inView ? "blur(0px)" : "blur(3px)",
+      }}
+      transition={{ duration: 0.55, ease }}
+      className="will-change-transform"
+    >
+      <button
+        type="button"
+        onClick={() => onOpen(m)}
+        aria-label={`Open ${m.name} bio`}
+        className="group flex w-full items-stretch overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] text-left transition-all hover:border-[#d4ae5b]/40 hover:bg-[#d4ae5b]/[0.04]"
+      >
+        <div className="relative aspect-[3/4] w-32 shrink-0 sm:w-40">
+          <Image
+            src={m.image}
+            alt={m.name}
+            fill
+            sizes="160px"
+            className="object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#07080b]/40 to-transparent" />
+          {m.badge && (
+            <span className="absolute left-2 top-2 rounded-full border border-[#d4ae5b]/40 bg-[#07080b]/70 px-2 py-0.5 font-[var(--font-mono)] text-[8px] uppercase tracking-[0.22em] text-[#f0cc7a] backdrop-blur">
+              {m.badge}
+            </span>
+          )}
+        </div>
+        <div className="flex flex-1 flex-col justify-between gap-3 p-5 sm:p-6">
+          <div>
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <div className="font-[var(--font-mono)] text-[9px] uppercase tracking-[0.28em] text-[#d4ae5b]">
+                  {m.role}
+                </div>
+                <h3 className="mt-1 font-[var(--font-display)] text-xl uppercase tracking-tight text-[#f5f4ef] sm:text-2xl">
+                  {m.name}
+                </h3>
+              </div>
+              <span className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] text-[#a8a39a]/60">
+                0{i + 1}
+              </span>
+            </div>
+            <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-[#a8a39a] sm:line-clamp-3">
+              {m.bio}
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-wrap gap-1.5">
+              {m.pedigree.slice(0, 2).map((p) => (
+                <span
+                  key={p}
+                  className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 font-[var(--font-mono)] text-[9px] uppercase tracking-[0.18em] text-[#a8a39a]"
+                >
+                  {p}
+                </span>
+              ))}
+            </div>
+            <span className="inline-flex items-center gap-1.5 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] text-[#d4ae5b]">
+              Open bio
+              <ArrowUpRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </span>
+          </div>
+        </div>
+      </button>
+    </motion.li>
+  );
+}
 
 function LinkedInIcon({ className }: { className?: string }) {
   return (
@@ -23,21 +114,23 @@ export function HomeTeamTeaser() {
   const [open, setOpen] = useState<Member | null>(null);
 
   return (
-    <section className="relative overflow-hidden border-t border-white/5 bg-[#07080b] py-28 lg:py-40">
+    <section className="relative border-t border-white/5 bg-[#07080b] py-28 lg:py-40">
       <div className="bg-grid-fine pointer-events-none absolute inset-0 opacity-25" />
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-          {/* Left column — sticky on desktop */}
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 lg:items-start">
+          {/* Left column — sticky on desktop. Sticky must live on the same
+              element as the col-span/grid child; nesting it inside a
+              transform-applying motion.div breaks position:sticky. */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: false, margin: "-100px" }}
             transition={{ duration: 0.7, ease }}
-            className="lg:col-span-5"
+            className="lg:sticky lg:top-32 lg:col-span-5 lg:self-start"
           >
-            <div className="lg:sticky lg:top-32">
+            <div>
               <SectionEyebrow number="03" label="The Team" />
-              <h2 className="font-[var(--font-display)] text-balance text-4xl font-extrabold uppercase leading-[1.0] tracking-tight sm:text-5xl lg:text-[64px]">
+              <h2 className="font-[var(--font-display)] text-balance text-4xl font-extrabold uppercase leading-[1.0] tracking-tight sm:text-5xl lg:text-[32px]">
                 Senior practitioners.
                 <span className="block text-[#d4ae5b]">From day one.</span>
               </h2>
@@ -63,76 +156,10 @@ export function HomeTeamTeaser() {
             </div>
           </motion.div>
 
-          {/* Scrolling member list */}
+          {/* Scrolling member list — each row scales + de-blurs as it enters frame */}
           <ul className="space-y-5 lg:col-span-7">
             {TEAM.map((m, i) => (
-              <motion.li
-                key={m.name}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.5, ease }}
-              >
-                <button
-                  type="button"
-                  onClick={() => setOpen(m)}
-                  aria-label={`Open ${m.name} bio`}
-                  className="group flex w-full items-stretch overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] text-left transition-all hover:border-[#d4ae5b]/40 hover:bg-[#d4ae5b]/[0.04]"
-                >
-                  <div className="relative aspect-[3/4] w-32 shrink-0 sm:w-40">
-                    <Image
-                      src={m.image}
-                      alt={m.name}
-                      fill
-                      sizes="160px"
-                      className="object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#07080b]/40 to-transparent" />
-                    {m.badge && (
-                      <span className="absolute left-2 top-2 rounded-full border border-[#d4ae5b]/40 bg-[#07080b]/70 px-2 py-0.5 font-[var(--font-mono)] text-[8px] uppercase tracking-[0.22em] text-[#f0cc7a] backdrop-blur">
-                        {m.badge}
-                      </span>
-                    )}
-                  </div>
-                  <div className="flex flex-1 flex-col justify-between gap-3 p-5 sm:p-6">
-                    <div>
-                      <div className="flex items-start justify-between gap-3">
-                        <div>
-                          <div className="font-[var(--font-mono)] text-[9px] uppercase tracking-[0.28em] text-[#d4ae5b]">
-                            {m.role}
-                          </div>
-                          <h3 className="mt-1 font-[var(--font-display)] text-xl font-extrabold uppercase tracking-tight text-[#f5f4ef] sm:text-2xl">
-                            {m.name}
-                          </h3>
-                        </div>
-                        <span className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] text-[#a8a39a]/60">
-                          0{i + 1}
-                        </span>
-                      </div>
-                      <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-[#a8a39a] sm:line-clamp-3">
-                        {m.bio}
-                      </p>
-                    </div>
-
-                    <div className="flex flex-wrap items-center justify-between gap-3">
-                      <div className="flex flex-wrap gap-1.5">
-                        {m.pedigree.slice(0, 2).map((p) => (
-                          <span
-                            key={p}
-                            className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 font-[var(--font-mono)] text-[9px] uppercase tracking-[0.18em] text-[#a8a39a]"
-                          >
-                            {p}
-                          </span>
-                        ))}
-                      </div>
-                      <span className="inline-flex items-center gap-1.5 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] text-[#d4ae5b]">
-                        Open bio
-                        <ArrowUpRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                      </span>
-                    </div>
-                  </div>
-                </button>
-              </motion.li>
+              <TeamRow key={m.name} m={m} i={i} onOpen={setOpen} />
             ))}
           </ul>
         </div>

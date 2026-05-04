@@ -25,7 +25,7 @@ export function DoctrineBand() {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: false, margin: "-80px" }}
           transition={{ duration: 0.7, ease }}
           className="max-w-2xl"
         >

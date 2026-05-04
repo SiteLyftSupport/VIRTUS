@@ -91,13 +91,13 @@ export function Team() {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: false, margin: "-100px" }}
           transition={{ duration: 0.7, ease }}
           className="grid gap-10 lg:grid-cols-12"
         >
           <div className="lg:col-span-5">
             <SectionEyebrow number="03" label="The Team" />
-            <h2 className="font-[var(--font-display)] text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-[56px]">
+            <h2 className="font-[var(--font-display)] text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-[28px]">
               The people we send
               <span className="block text-[#d4ae5b]">define the work.</span>
             </h2>
@@ -118,7 +118,7 @@ export function Team() {
               key={m.name}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: false, margin: "-80px" }}
               transition={{ duration: 0.55, ease, delay: i * 0.05 }}
               className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] transition-colors hover:border-[#d4ae5b]/30"
             >

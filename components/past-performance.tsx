@@ -80,7 +80,7 @@ export function PastPerformance() {
         <div className="grid items-stretch gap-10 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <SectionEyebrow number="05" label="Past Performance" />
-            <h2 className="font-[var(--font-display)] text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-[56px]">
+            <h2 className="font-[var(--font-display)] text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-[28px]">
               Programs that
               <span className="block text-[#d4ae5b]">moved the needle.</span>
             </h2>
@@ -97,7 +97,7 @@ export function PastPerformance() {
                   key={e.title}
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
+                  viewport={{ once: false, margin: "-80px" }}
                   transition={{ duration: 0.5, ease, delay: i * 0.05 }}
                   className="group relative bg-[#07080b]/70 p-7 transition-colors hover:bg-[#0d1015]"
                 >
@@ -135,7 +135,7 @@ export function PastPerformance() {
               key={i}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: false, margin: "-80px" }}
               transition={{ duration: 0.55, ease, delay: i * 0.05 }}
               className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] p-8"
             >

@@ -38,12 +38,12 @@ export function Contact() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: false, margin: "-100px" }}
           transition={{ duration: 0.7, ease }}
           className="mx-auto max-w-3xl text-center"
         >
           <SectionEyebrow number="06" label="Engage Virtus" />
-          <h2 className="font-[var(--font-display)] text-balance text-5xl font-extrabold leading-[1.02] tracking-tight sm:text-6xl lg:text-[80px]">
+          <h2 className="font-[var(--font-display)] text-balance text-5xl font-extrabold leading-[1.02] tracking-tight sm:text-4xl lg:text-[28px]">
             Tell us about
             <span className="block text-[#d4ae5b]">the mission.</span>
           </h2>
@@ -60,7 +60,7 @@ export function Contact() {
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
+            viewport={{ once: false, margin: "-80px" }}
             transition={{ duration: 0.7, ease }}
             className="lg:col-span-5"
           >
@@ -131,7 +131,7 @@ export function Contact() {
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
+            viewport={{ once: false, margin: "-80px" }}
             transition={{ duration: 0.7, ease, delay: 0.1 }}
             className="lg:col-span-7"
           >

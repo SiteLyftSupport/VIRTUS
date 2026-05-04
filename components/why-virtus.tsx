@@ -69,7 +69,7 @@ export function WhyVirtus() {
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         <div className="max-w-3xl">
           <SectionEyebrow number="04" label="Why Virtus" />
-          <h2 className="font-[var(--font-display)] text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-[56px]">
+          <h2 className="font-[var(--font-display)] text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-[28px]">
             A small business with the
             <span className="block text-[#d4ae5b]">posture of a prime.</span>
           </h2>
@@ -86,7 +86,7 @@ export function WhyVirtus() {
               key={title}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: false, margin: "-80px" }}
               transition={{ duration: 0.5, ease, delay: i * 0.05 }}
               className="group relative bg-[#07080b]/70 p-8 transition-colors hover:bg-[#0d1015]"
             >

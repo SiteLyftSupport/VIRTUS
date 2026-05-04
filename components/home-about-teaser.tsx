@@ -21,12 +21,12 @@ export function HomeAboutTeaser() {
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: false, margin: "-100px" }}
             transition={{ duration: 0.7, ease }}
             className="flex flex-col justify-center lg:col-span-7"
           >
             <SectionEyebrow number="01" label="About Virtus" />
-            <h2 className="font-[var(--font-display)] text-balance text-4xl font-extrabold uppercase leading-[1.0] tracking-tight sm:text-5xl lg:text-[64px]">
+            <h2 className="font-[var(--font-display)] text-balance text-4xl font-extrabold uppercase leading-[1.0] tracking-tight sm:text-5xl lg:text-[32px]">
               Founded by IC and DoD professionals.
               <span className="block text-[#d4ae5b]">Built for the mission.</span>
             </h2>
@@ -49,7 +49,7 @@ export function HomeAboutTeaser() {
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: false, margin: "-100px" }}
             transition={{ duration: 0.8, ease, delay: 0.1 }}
             className="lg:col-span-5"
           >

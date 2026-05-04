@@ -25,12 +25,12 @@ export function About() {
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: false, margin: "-100px" }}
             transition={{ duration: 0.7, ease }}
             className="flex flex-col lg:col-span-5"
           >
             <SectionEyebrow number="01" label="About Virtus" />
-            <h2 className="font-[var(--font-display)] text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+            <h2 className="font-[var(--font-display)] text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-4xl">
               Founded by intelligence and defense professionals.
               <span className="block text-[#d4ae5b]"> Built for the mission.</span>
             </h2>
@@ -61,7 +61,7 @@ export function About() {
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: false, margin: "-100px" }}
             transition={{ duration: 0.8, ease, delay: 0.1 }}
             className="flex flex-col lg:col-span-7"
           >

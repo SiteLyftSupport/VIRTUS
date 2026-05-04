@@ -16,7 +16,7 @@ export function CareersGrid() {
           key={c.slug}
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: false, margin: "-80px" }}
           transition={{ duration: 0.5, ease, delay: (i % 3) * 0.05 }}
         >
           <Link
