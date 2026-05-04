@@ -1,5 +1,5 @@
 import { Hero } from "@/components/hero";
-import { About } from "@/components/about";
+import { HomeAboutTeaser } from "@/components/home-about-teaser";
 import { DoctrineBand } from "@/components/doctrine-band";
 import { HomeServicesTeaser } from "@/components/home-services-teaser";
 import { HomeTeamTeaser } from "@/components/home-team-teaser";
@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <About />
+      <HomeAboutTeaser />
       <DoctrineBand />
       <HomeServicesTeaser />
       <HomeTeamTeaser />

@@ -14,6 +14,9 @@ export const media = {
   archive: `${BASE}/hf_20260504_191303_4a54fd9f-847e-46fa-b781-1547447d24e6.png`,
   capabilityMatrix: `${BASE}/hf_20260504_191313_f9c52e6d-500c-449e-b8a0-f80e9a699b8c.png`,
   corridor: `${BASE}/hf_20260504_191321_2e3df375-3b4a-4b50-9fcd-acd8e806dce4.png`,
+  founderPortrait: `${BASE}/hf_20260504_193241_7b017ad9-cd7e-4bd1-8c09-9bc60d4019c7.png`,
+  foundingDesk: `${BASE}/hf_20260504_193249_f7961877-a6cd-4ded-9cf7-90a758b02a50.png`,
+  dcSkyline: `${BASE}/hf_20260504_193258_51571450-1c8f-4b86-9603-d86fdba968f2.png`,
   capabilities: {
     engineering: `${BASE}/hf_20260504_175502_82825f3e-96a3-4784-8870-86a410bcf6a1.png`,
     pm: `${BASE}/hf_20260504_175510_cb84322c-b405-4031-ac61-2bfb80f07d19.png`,

@@ -1,52 +1,42 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Shield } from "lucide-react";
-import { media } from "@/lib/media";
-
-const HERO_IMG = media.heroPrimary;
-const HERO_VIDEO = media.heroVideo;
+import { HeroSignal } from "./hero-signal";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
+const PILLARS = [
+  "Systems & Software Engineering",
+  "Data Engineering & Analytics",
+  "AI / ML Development",
+  "Subject Matter Expertise",
+];
+
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden">
-      {/* Background — video with image fallback */}
+    <section className="relative isolate overflow-hidden bg-[#07080b]">
+      {/* Backdrop layers */}
       <div className="absolute inset-0">
-        <Image
-          src={HERO_IMG}
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover opacity-40"
-        />
-        <video
-          src={HERO_VIDEO}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-hidden
-          className="absolute inset-0 h-full w-full object-cover opacity-50"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#07080b]/40 via-[#07080b]/70 to-[#07080b]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#07080b] via-transparent to-[#07080b]/50" />
-        <div className="radial-spotlight absolute inset-0" />
         <div className="bg-grid absolute inset-0 opacity-50" />
+        <div
+          className="absolute inset-x-0 top-0 h-[80%]"
+          style={{
+            background:
+              "radial-gradient(60% 60% at 50% 0%, rgba(163, 19, 42, 0.25) 0%, rgba(7, 8, 11, 0) 70%)",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#07080b]" />
       </div>
 
-      <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col px-6 pt-32 pb-20 lg:px-10">
+      <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col px-6 pt-32 pb-12 lg:px-10">
         {/* Status bar */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease }}
-          className="mb-12 flex flex-wrap items-center gap-3 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-[#a8a39a]"
+          className="flex flex-wrap items-center gap-3 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-[#a8a39a]"
         >
           <span className="inline-flex h-1.5 w-1.5 animate-pulse rounded-full bg-[#e21a3a]" />
           <span className="text-[#f0cc7a]">Mission Active</span>
@@ -56,13 +46,14 @@ export function Hero() {
           <span>Established 2010</span>
         </motion.div>
 
-        <div className="flex flex-1 items-center">
-          <div className="w-full">
+        <div className="grid flex-1 items-center gap-10 pt-10 lg:grid-cols-12 lg:gap-6 lg:pt-0">
+          {/* Copy */}
+          <div className="relative z-10 lg:col-span-6">
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease, delay: 0.05 }}
-              className="font-[var(--font-display)] text-balance text-[44px] font-bold leading-[0.95] tracking-tight sm:text-[64px] lg:text-[96px] xl:text-[112px]"
+              className="font-[var(--font-display)] text-balance text-[40px] font-extrabold leading-[0.95] tracking-tight sm:text-[56px] lg:text-[80px] xl:text-[92px]"
             >
               ENGINEERED FOR
               <br />
@@ -77,20 +68,36 @@ export function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease, delay: 0.25 }}
-              className="mt-8 max-w-2xl text-pretty text-base leading-relaxed text-[#a8a39a] sm:text-lg"
+              className="mt-7 max-w-xl text-pretty text-base leading-relaxed text-[#a8a39a] sm:text-lg"
             >
               Virtus Technology Solutions is a Service-Disabled Veteran-Owned
-              Small Business delivering systems engineering, integration, program
-              management, and mission operations support to the U.S. Department
-              of Defense, the Intelligence Community, and federal partners across
-              the national security enterprise.
+              Small Business delivering systems and software engineering, data
+              engineering and analytics, AI/ML development, and technical
+              subject-matter expertise to the U.S. Intelligence Community and
+              Department of Defense.
             </motion.p>
+
+            <motion.ul
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease, delay: 0.35 }}
+              className="mt-7 flex flex-wrap gap-2"
+            >
+              {PILLARS.map((p) => (
+                <li
+                  key={p}
+                  className="rounded-full border border-[#d4ae5b]/30 bg-[#d4ae5b]/[0.04] px-3 py-1.5 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] text-[#f0cc7a]"
+                >
+                  {p}
+                </li>
+              ))}
+            </motion.ul>
 
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease, delay: 0.4 }}
-              className="mt-10 flex flex-wrap items-center gap-4"
+              transition={{ duration: 0.8, ease, delay: 0.45 }}
+              className="mt-9 flex flex-wrap items-center gap-3"
             >
               <Link
                 href="/services"
@@ -107,24 +114,34 @@ export function Hero() {
                 Engage a Team Lead
               </Link>
             </motion.div>
-
-            {/* Stats strip */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease, delay: 0.55 }}
-              className="mt-20 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-md sm:grid-cols-4"
-            >
-              <Stat n="14+" label="Years on Mission" />
-              <Stat n="100%" label="Cleared Workforce" />
-              <Stat n="DoD · IC" label="Customer Set" />
-              <Stat n="SDVOSB" label="CVE Certified" />
-            </motion.div>
           </div>
+
+          {/* Globe */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, ease, delay: 0.3 }}
+            className="relative aspect-square w-full lg:col-span-6 lg:aspect-auto lg:h-[640px]"
+          >
+            <HeroSignal />
+          </motion.div>
         </div>
+
+        {/* Stats strip */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease, delay: 0.6 }}
+          className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-md sm:grid-cols-4"
+        >
+          <Stat n="14+" label="Years on Mission" />
+          <Stat n="100%" label="Cleared Workforce" />
+          <Stat n="DoD · IC" label="Customer Set" />
+          <Stat n="SDVOSB" label="CVE Certified" />
+        </motion.div>
       </div>
 
-      {/* Bottom marquee */}
+      {/* Customer marquee */}
       <div className="relative border-t border-white/5 bg-black/40 backdrop-blur-md">
         <div className="overflow-hidden py-4">
           <div className="marquee flex w-max items-center gap-12 whitespace-nowrap font-[var(--font-mono)] text-[11px] uppercase tracking-[0.32em] text-[#a8a39a]/70">
@@ -159,7 +176,7 @@ export function Hero() {
 function Stat({ n, label }: { n: string; label: string }) {
   return (
     <div className="flex flex-col gap-1 bg-[#07080b]/60 px-5 py-5">
-      <div className="font-[var(--font-display)] text-2xl font-semibold text-[#f0cc7a] sm:text-3xl">
+      <div className="font-[var(--font-display)] text-2xl font-extrabold text-[#f0cc7a] sm:text-3xl">
         {n}
       </div>
       <div className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] text-[#a8a39a]">

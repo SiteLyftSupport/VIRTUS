@@ -57,7 +57,7 @@ export function VirtusWordmark({ className }: Props) {
     <div className={clsx("flex items-center gap-3", className)}>
       <VirtusMark className="h-9 w-9" />
       <div className="leading-none">
-        <div className="font-[var(--font-display)] tracking-[0.18em] text-[18px] font-bold text-[#f5f4ef]">
+        <div className="font-[var(--font-display)] tracking-[0.16em] text-[19px] font-extrabold text-[#f5f4ef]">
           VIRTUS
         </div>
         <div className="mt-1 text-[9px] tracking-[0.32em] text-[#d4ae5b] font-[var(--font-mono)]">
