@@ -1,10 +1,11 @@
 import { Hero } from "@/components/hero";
 import { About } from "@/components/about";
 import { DoctrineBand } from "@/components/doctrine-band";
-import { Capabilities } from "@/components/capabilities";
-import { Team } from "@/components/team";
-import { WhyVirtus } from "@/components/why-virtus";
-import { PastPerformance } from "@/components/past-performance";
+import { HomeServicesTeaser } from "@/components/home-services-teaser";
+import { HomeTeamTeaser } from "@/components/home-team-teaser";
+import { HomeCareersTeaser } from "@/components/home-careers-teaser";
+import { QuickFacts } from "@/components/quick-facts";
+import { CertsBand } from "@/components/certs-band";
 import { Contact } from "@/components/contact";
 
 export default function Home() {
@@ -13,10 +14,11 @@ export default function Home() {
       <Hero />
       <About />
       <DoctrineBand />
-      <Capabilities />
-      <Team />
-      <WhyVirtus />
-      <PastPerformance />
+      <HomeServicesTeaser />
+      <HomeTeamTeaser />
+      <HomeCareersTeaser />
+      <QuickFacts />
+      <CertsBand />
       <Contact />
     </>
   );

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight, Shield } from "lucide-react";
 
 const HERO_IMG =
@@ -80,20 +81,20 @@ export function Hero() {
               transition={{ duration: 0.8, ease, delay: 0.4 }}
               className="mt-10 flex flex-wrap items-center gap-4"
             >
-              <a
-                href="#capabilities"
+              <Link
+                href="/services"
                 className="group inline-flex items-center gap-2 rounded-full bg-[#a3132a] px-6 py-3.5 text-sm font-semibold uppercase tracking-[0.16em] text-[#f5f4ef] shadow-[0_0_0_1px_rgba(212,174,91,0.25),0_20px_60px_-20px_rgba(163,19,42,0.6)] transition-all hover:bg-[#e21a3a]"
               >
-                Explore Capabilities
+                Explore Services
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-              <a
-                href="#contact"
+              </Link>
+              <Link
+                href="/contact"
                 className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3.5 text-sm font-semibold uppercase tracking-[0.16em] text-[#f5f4ef] backdrop-blur-md transition-all hover:bg-white/10"
               >
                 <Shield className="h-4 w-4 text-[#d4ae5b]" />
                 Engage a Team Lead
-              </a>
+              </Link>
             </motion.div>
 
             {/* Stats strip */}
