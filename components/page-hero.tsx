@@ -50,7 +50,7 @@ export function PageHero({
           className="max-w-3xl"
         >
           <SectionEyebrow number={eyebrowNumber} label={eyebrowLabel} />
-          <h1 className="font-[var(--font-tactical)] text-balance text-5xl font-semibold leading-[1.02] tracking-tight sm:text-4xl lg:text-5xl">
+          <h1 className="font-[var(--font-tactical)] text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-[64px]">
             {title}
           </h1>
           {subtitle && (

@@ -22,7 +22,7 @@ export function SiteFooter() {
               <Badge>CMMC 2.0 Certified</Badge>
               <Badge>SAM.gov Registered</Badge>
             </div>
-            <div className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/10 bg-white/5 max-w-xs">
+            <div className="mt-6 grid max-w-sm grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/10 bg-white/5">
               <FooterFact k="DUNS" v={SITE.duns} />
               <FooterFact k="CAGE" v={SITE.cage} />
             </div>
@@ -93,9 +93,24 @@ export function SiteFooter() {
             <span className="text-[#d4ae5b]/70">{SITE.motto.toUpperCase()}</span>
           </div>
           <div className="flex items-center gap-6">
-            <Link href="#" className="hover:text-[#f5f4ef]">Privacy</Link>
-            <Link href="#" className="hover:text-[#f5f4ef]">Terms</Link>
-            <Link href="#" className="hover:text-[#f5f4ef]">Accessibility</Link>
+            <a
+              href={`mailto:${SITE.generalEmail}?subject=Privacy Inquiry`}
+              className="hover:text-[#f5f4ef]"
+            >
+              Privacy
+            </a>
+            <a
+              href={`mailto:${SITE.generalEmail}?subject=Terms Inquiry`}
+              className="hover:text-[#f5f4ef]"
+            >
+              Terms
+            </a>
+            <a
+              href={`mailto:${SITE.generalEmail}?subject=Accessibility Inquiry`}
+              className="hover:text-[#f5f4ef]"
+            >
+              Accessibility
+            </a>
           </div>
         </div>
       </div>

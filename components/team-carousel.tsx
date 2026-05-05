@@ -29,8 +29,18 @@ export function TeamCarousel() {
   const [open, setOpen] = useState<Member | null>(null);
   const dragX = useMotionValue(0);
 
-  // Scroll-pin host: each member gets one viewport segment.
-  // The carousel is sticky-centered while we scroll through these segments.
+  // Scroll-pin behaviour is desktop-only. On phones/tablets the
+  // section just shows one tall viewport with drag/arrows for nav —
+  // the alternative is `total * 100vh` of mobile scroll which is brutal.
+  const [isPinned, setIsPinned] = useState(false);
+  useEffect(() => {
+    const mql = window.matchMedia("(min-width: 1024px)");
+    const sync = () => setIsPinned(mql.matches);
+    sync();
+    mql.addEventListener("change", sync);
+    return () => mql.removeEventListener("change", sync);
+  }, []);
+
   const pinRef = useRef<HTMLDivElement>(null);
   const total = TEAM.length;
 
@@ -39,11 +49,8 @@ export function TeamCarousel() {
     offset: ["start start", "end end"],
   });
 
-  // Track scroll progress → active index. We allow manual changes (arrows,
-  // dots, drag) to take over by scrolling to the matching segment instead
-  // of fighting state.
   useMotionValueEvent(scrollYProgress, "change", (v) => {
-    if (open) return;
+    if (open || !isPinned) return;
     const clamped = Math.max(0, Math.min(0.9999, v));
     const idx = Math.min(total - 1, Math.floor(clamped * total));
     setActive((prev) => (prev === idx ? prev : idx));
@@ -51,6 +58,10 @@ export function TeamCarousel() {
 
   const scrollToIndex = useCallback(
     (idx: number) => {
+      if (!isPinned) {
+        setActive(idx);
+        return;
+      }
       const host = pinRef.current;
       if (!host) {
         setActive(idx);
@@ -62,13 +73,12 @@ export function TeamCarousel() {
         setActive(idx);
         return;
       }
-      // Aim for the middle of segment `idx`.
       const ratio = (idx + 0.5) / total;
       const target =
         window.scrollY + rect.top + ratio * totalScrollable;
       window.scrollTo({ top: target, behavior: "smooth" });
     },
-    [total],
+    [total, isPinned],
   );
 
   const prev = useCallback(() => {
@@ -111,10 +121,10 @@ export function TeamCarousel() {
       id="team"
       ref={pinRef}
       className="relative bg-[#07080b]"
-      style={{ height: `${total * 100}vh` }}
+      style={isPinned ? { height: `${total * 100}vh` } : undefined}
     >
-      {/* Sticky stage — pins to viewport while user scrolls through segments */}
-      <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
+      {/* Sticky stage on lg+; on mobile/tablet it's just a normal block */}
+      <div className="flex min-h-screen flex-col overflow-hidden lg:sticky lg:top-0 lg:h-screen lg:min-h-0">
         <div className="bg-grid-fine pointer-events-none absolute inset-0 opacity-25" />
         <div
           className="pointer-events-none absolute inset-x-0 top-0 h-2/3 opacity-60"
