@@ -33,9 +33,17 @@ export function SiteHeader() {
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
+      <div
+        className={`mx-auto flex max-w-7xl items-center justify-between px-6 transition-[padding] duration-300 lg:px-10 ${
+          scrolled ? "py-3" : "py-5"
+        }`}
+      >
         <Link href="/" className="flex items-center gap-3">
-          <VirtusWordmark />
+          <VirtusWordmark
+            className={`transition-[height] duration-300 ease-out ${
+              scrolled ? "h-9 sm:h-10" : "h-14 sm:h-16 lg:h-20"
+            }`}
+          />
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">
