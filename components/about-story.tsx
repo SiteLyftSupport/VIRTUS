@@ -33,12 +33,12 @@ export function AboutStory() {
     >
       <motion.div style={{ y: heroY }} className="absolute inset-0 -z-10">
         <Image
-          src={media.foundingDesk}
+          src={media.founderPortrait}
           alt=""
           fill
           priority
           sizes="100vw"
-          className="object-cover opacity-25"
+          className="object-cover object-top opacity-25"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#07080b]/60 via-[#07080b]/85 to-[#07080b]" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#07080b] via-[#07080b]/55 to-[#07080b]/85" />
