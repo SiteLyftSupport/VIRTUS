@@ -14,21 +14,10 @@ type Props = {
   granularity?: "letter" | "word";
   /** Element type to render. */
   as?: "p" | "blockquote" | "div" | "h2" | "h3";
-  /**
-   * Scroll offset used to drive the reveal. The element fully reveals
-   * between the start and end progress points.
-   *  - start: when the element top hits this point of the viewport (0 = top, 1 = bottom)
-   *  - end:   when the element bottom hits this point of the viewport
-   */
   startOffset?: string;
   endOffset?: string;
 };
 
-/**
- * ScrollLetterReveal — animates each letter (or word) in/out tied to
- * scroll progress. The text reveals as the element enters the viewport
- * and dims as it leaves, so it works on scroll up and scroll down.
- */
 export function ScrollLetterReveal({
   text,
   className = "",
@@ -43,46 +32,69 @@ export function ScrollLetterReveal({
     offset: [startOffset, endOffset] as [string, string] as never,
   });
 
-  // Tokenize: keep whitespace as its own token so the layout matches the
-  // original string, while still letting us animate per-word/per-letter.
-  const tokens =
-    granularity === "letter"
-      ? Array.from(text)
-      : text.split(/(\s+)/);
+  const words = text.split(/(\s+)/);
 
-  const visibleTokens = tokens.filter((t) => t.trim().length > 0).length;
-  let visibleIndex = -1;
+  // Pre-count animatable units so each can be assigned a slice of progress.
+  let totalUnits = 0;
+  for (const w of words) {
+    if (w.trim().length === 0) continue;
+    totalUnits += granularity === "letter" ? Array.from(w).length : 1;
+  }
 
   const Component = motion[as] as typeof motion.p;
 
+  let unitIndex = -1;
+  const sliceFor = () => {
+    unitIndex += 1;
+    const start = unitIndex / Math.max(totalUnits, 1);
+    const end = Math.min(1, start + 1 / Math.max(totalUnits, 1) + 0.08);
+    return { start, end };
+  };
+
   return (
-    <Component
-      ref={ref as never}
-      className={className}
-      // Allow letters to wrap at whitespace naturally.
-      style={{ display: "inline-block" }}
-    >
-      {tokens.map((token, i) => {
-        const isWhitespace = token.trim().length === 0;
-        if (isWhitespace) {
+    <Component ref={ref as never} className={className}>
+      {words.map((word, i) => {
+        if (word.trim().length === 0) {
           return (
             <span key={i} aria-hidden style={{ whiteSpace: "pre" }}>
-              {token}
+              {word}
             </span>
           );
         }
-        visibleIndex += 1;
-        const start = visibleIndex / Math.max(visibleTokens, 1);
-        const end = Math.min(1, start + 1 / Math.max(visibleTokens, 1) + 0.08);
+        // Wrap each word in a non-breaking inline-block so the browser
+        // never breaks mid-word, even though letter spans are inline-block.
         return (
-          <Token
+          <span
             key={i}
-            progress={scrollYProgress}
-            start={start}
-            end={end}
+            style={{ display: "inline-block", whiteSpace: "nowrap" }}
           >
-            {token}
-          </Token>
+            {granularity === "letter"
+              ? Array.from(word).map((ch, j) => {
+                  const { start, end } = sliceFor();
+                  return (
+                    <Token
+                      key={j}
+                      progress={scrollYProgress}
+                      start={start}
+                      end={end}
+                    >
+                      {ch}
+                    </Token>
+                  );
+                })
+              : (() => {
+                  const { start, end } = sliceFor();
+                  return (
+                    <Token
+                      progress={scrollYProgress}
+                      start={start}
+                      end={end}
+                    >
+                      {word}
+                    </Token>
+                  );
+                })()}
+          </span>
         );
       })}
     </Component>
@@ -107,9 +119,7 @@ function Token({
     "blur(0px)",
   ]);
   return (
-    <motion.span
-      style={{ opacity, y, filter, display: "inline-block" }}
-    >
+    <motion.span style={{ opacity, y, filter, display: "inline-block" }}>
       {children}
     </motion.span>
   );

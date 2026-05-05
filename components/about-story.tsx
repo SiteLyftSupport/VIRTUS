@@ -102,52 +102,36 @@ export function AboutStory() {
             </div>
           </div>
 
-          <div className="flex flex-col lg:col-span-5">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease, delay: 0.15 }}
-              className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-white/10 shadow-[0_60px_120px_-40px_rgba(0,0,0,0.7)]"
-            >
-              <Image
-                src={media.founderPortrait}
-                alt="Lewis Rhodes, Founder & Owner"
-                fill
-                sizes="(min-width: 1024px) 35vw, 80vw"
-                className="object-cover"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#07080b] via-[#07080b]/20 to-transparent" />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease, delay: 0.15 }}
+            className="relative min-h-[520px] overflow-hidden rounded-3xl border border-white/10 shadow-[0_60px_120px_-40px_rgba(0,0,0,0.7)] lg:col-span-5 lg:min-h-0"
+          >
+            <Image
+              src={media.founderPortrait}
+              alt="Lewis Rhodes, Founder & Owner"
+              fill
+              sizes="(min-width: 1024px) 40vw, 90vw"
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#07080b] via-[#07080b]/20 to-transparent" />
 
-              <div className="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full border border-[#d4ae5b]/40 bg-[#07080b]/70 px-3 py-1 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] text-[#f0cc7a] backdrop-blur">
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#e21a3a]" />
-                Founder · Owner
+            <div className="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full border border-[#d4ae5b]/40 bg-[#07080b]/70 px-3 py-1 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] text-[#f0cc7a] backdrop-blur">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#e21a3a]" />
+              Founder · Owner
+            </div>
+
+            <div className="absolute bottom-5 left-5 right-5">
+              <div className="font-[var(--font-tactical)] text-3xl font-extrabold leading-tight tracking-tight text-[#f5f4ef] sm:text-4xl">
+                Lewis Rhodes
               </div>
-
-              <div className="absolute bottom-5 left-5 right-5">
-                <div className="font-[var(--font-tactical)] text-3xl font-extrabold leading-tight tracking-tight text-[#f5f4ef] sm:text-4xl">
-                  Lewis Rhodes
-                </div>
-                <div className="mt-2 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-[#d4ae5b]">
-                  U.S. Navy · IC · 25+ Years on Mission
-                </div>
+              <div className="mt-2 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-[#d4ae5b]">
+                U.S. Navy · IC · 25+ Years on Mission
               </div>
-            </motion.div>
-
-            <motion.figure
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease, delay: 0.3 }}
-              className="mt-5 rounded-2xl border border-[#d4ae5b]/20 bg-gradient-to-br from-[#0d1015] to-[#07080b] p-5"
-            >
-              <blockquote className="font-[var(--font-tactical)] text-sm font-semibold leading-snug text-[#f5f4ef] sm:text-base">
-                &ldquo;We send the people you would have asked for by name.&rdquo;
-              </blockquote>
-              <figcaption className="mt-3 font-[var(--font-mono)] text-[9px] uppercase tracking-[0.28em] text-[#d4ae5b]">
-                Founder&rsquo;s commitment
-              </figcaption>
-            </motion.figure>
-          </div>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
