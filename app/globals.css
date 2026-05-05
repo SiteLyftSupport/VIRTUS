@@ -33,6 +33,26 @@ html, body {
   color: #f5f4ef;
 }
 
+:where(a, button, [role="button"], input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid #f0cc7a;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+button, a, [role="button"] { -webkit-tap-highlight-color: transparent; }
+
+/* Smooth in-page anchor scrolling, with offset for the fixed header */
+html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* Subtle grid backdrop used on multiple sections */
 .bg-grid {
   background-image:

@@ -76,7 +76,7 @@ export default async function CareerPage({
               number={`Job · ${String(idx + 1).padStart(2, "0")}`}
               label="Open Position"
             />
-            <h1 className="font-[var(--font-tactical)] text-balance text-5xl font-semibold leading-[1.02] tracking-tight sm:text-4xl lg:text-5xl">
+            <h1 className="font-[var(--font-tactical)] text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
               {career.title}
             </h1>
             <p className="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-[#a8a39a] sm:text-lg">

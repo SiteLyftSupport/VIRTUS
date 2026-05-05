@@ -55,7 +55,7 @@ export function Modal({ open, onClose, labelledBy, children }: Props) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.97 }}
             transition={{ duration: 0.3, ease }}
-            className="relative mx-4 my-4 w-full max-w-5xl overflow-hidden rounded-3xl border border-white/10 bg-[#0a0c11] shadow-[0_60px_120px_-30px_rgba(0,0,0,0.9)]"
+            className="relative mx-4 my-4 w-full max-w-5xl overflow-y-auto overscroll-contain rounded-3xl border border-white/10 bg-[#0a0c11] shadow-[0_60px_120px_-30px_rgba(0,0,0,0.9)]"
             style={{ maxHeight: "calc(100dvh - 2rem)" }}
           >
             <button

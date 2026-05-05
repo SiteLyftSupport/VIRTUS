@@ -18,7 +18,7 @@ const STATS = [
 export function Hero() {
   return (
     <>
-      <section className="relative isolate flex min-h-[760px] flex-col overflow-hidden bg-[#07080b] lg:h-[100svh] lg:min-h-[820px]">
+      <section className="relative isolate flex min-h-[680px] flex-col overflow-hidden bg-[#07080b] sm:min-h-[760px] lg:h-[100svh] lg:min-h-[820px]">
         {/* Full-bleed signal mesh + gradient mask */}
         <div className="absolute inset-0">
           <HeroSignal />
