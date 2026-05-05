@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 
 export default function TeamPage() {
   return (
-    <div className="pt-16">
+    <>
       <TeamCarousel />
       <CertsBand />
-    </div>
+    </>
   );
 }
