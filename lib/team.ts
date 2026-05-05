@@ -18,8 +18,16 @@ export const TEAM: Member[] = [
     role: "Founder & Owner",
     bio: "U.S. Navy veteran and Intelligence Community professional. Founded Virtus in 2010 after 25+ years across DoD and IC programs, with a focus on ISR and communications systems engineering.",
     pedigree: ["U.S. Navy", "DoD", "IC", "ISR Programs"],
-    image: media.team[0],
+    image: "/team/lewis-rhodes.jpg",
     badge: "Owner",
+  },
+  {
+    name: "Kevin Learned",
+    role: "Outside General Counsel",
+    bio: "Trusted legal advisor for entrepreneurs, start-ups, and emerging-growth and middle-market companies. Counsels Virtus on corporate and securities matters — including M&A, private offerings, executive equity, SDVOSB and 8(a) certifications, and the commercial contracts that keep the firm defensible.",
+    pedigree: ["Corporate / Securities", "M&A", "GovCon Counsel", "SDVOSB"],
+    image: "/team/kevin-learned.jpg",
+    badge: "Counsel",
   },
   {
     name: "Maya Howard",
