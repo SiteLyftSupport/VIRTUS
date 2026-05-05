@@ -124,7 +124,7 @@ export function TeamCarousel() {
           }}
         />
 
-        <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col px-6 pt-24 pb-10 lg:px-10 lg:pt-28 lg:pb-12">
+        <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col px-6 pt-20 pb-8 lg:px-10 lg:pt-24 lg:pb-10">
           {/* Header — tightened so carousel is visible above the fold */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -133,18 +133,15 @@ export function TeamCarousel() {
             className="mx-auto flex max-w-3xl flex-col items-center text-center"
           >
             <SectionEyebrow number="03" label="The Team" align="center" />
-            <h2 className="font-[var(--font-tactical)] text-balance text-3xl font-extrabold leading-[1.05] tracking-tight sm:text-4xl lg:text-5xl">
+            <h2 className="font-[var(--font-tactical)] text-balance text-3xl font-extrabold leading-[1.05] tracking-tight sm:text-4xl lg:text-[44px]">
               The people we send
               <span className="block text-[#d4ae5b]">define the work.</span>
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-pretty text-center text-sm leading-relaxed text-[#a8a39a] sm:text-base">
-              Scroll, drag, or use the arrow keys. Tap any portrait for the full bio.
-            </p>
           </motion.div>
 
           {/* Carousel stage — fills remaining vertical space */}
           <div
-            className="relative mt-6 flex flex-1 select-none items-center justify-center"
+            className="relative mt-4 flex flex-1 select-none items-center justify-center"
             style={{ perspective: "1400px", minHeight: 360 }}
           >
             <motion.div
@@ -188,7 +185,7 @@ export function TeamCarousel() {
                     style={{ transformStyle: "preserve-3d" }}
                   >
                     <div
-                      className={`relative aspect-[3/4] w-[240px] overflow-hidden rounded-2xl border bg-[#0d1015] shadow-[0_30px_60px_-30px_rgba(0,0,0,0.7)] sm:w-[300px] lg:w-[340px] ${
+                      className={`relative aspect-[3/4] w-[220px] overflow-hidden rounded-2xl border bg-[#0d1015] shadow-[0_30px_60px_-30px_rgba(0,0,0,0.7)] sm:w-[260px] lg:w-[300px] ${
                         isActive
                           ? "border-[#d4ae5b]/60 shadow-[0_0_0_1px_rgba(212,174,91,0.2),0_60px_120px_-30px_rgba(212,174,91,0.18)]"
                           : "border-white/10"
@@ -198,7 +195,7 @@ export function TeamCarousel() {
                         src={m.image}
                         alt={m.name}
                         fill
-                        sizes="(min-width: 1024px) 340px, (min-width: 640px) 300px, 240px"
+                        sizes="(min-width: 1024px) 300px, (min-width: 640px) 260px, 220px"
                         className={`object-cover transition-all duration-700 ${
                           isActive ? "" : "scale-[1.02] blur-[3px]"
                         }`}
