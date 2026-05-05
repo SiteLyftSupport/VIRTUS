@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { SITE } from "@/lib/site";
 import { SectionEyebrow } from "./section-eyebrow";
-import { CountUp } from "./count-up";
 import {
   Building2,
   Calendar,
@@ -15,62 +14,45 @@ import {
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-type Fact =
-  | {
-      kind: "feature";
-      label: string;
-      count: number;
-      suffix?: string;
-      prefix?: string;
-      caption: string;
-      note: string;
-    }
-  | {
-      kind: "tile";
-      label: string;
-      value: string;
-      note: string;
-      icon: React.ComponentType<{ className?: string }>;
-    };
+type Fact = {
+  label: string;
+  value: string;
+  note: string;
+  icon: React.ComponentType<{ className?: string }>;
+};
 
 const FACTS: Fact[] = [
   {
-    kind: "feature",
     label: "Established",
-    count: SITE.founded,
-    caption: "Mission engineering since",
-    note: "Founded by veterans of the U.S. IC and DoD.",
+    value: String(SITE.founded),
+    note: "Mission engineering since founding by veterans of the U.S. IC and DoD.",
+    icon: Calendar,
   },
   {
-    kind: "tile",
     label: "Designation",
     value: "SDVOSB",
     note: "CVE-Verified Service-Disabled Veteran-Owned Small Business",
     icon: ShieldCheck,
   },
   {
-    kind: "tile",
     label: "Headquarters",
     value: SITE.hq,
     note: "Northern Virginia · Washington D.C. metro",
     icon: MapPin,
   },
   {
-    kind: "tile",
     label: "DUNS",
     value: SITE.duns,
     note: "Federal awardee identifier",
     icon: Hash,
   },
   {
-    kind: "tile",
     label: "CAGE",
     value: SITE.cage,
     note: "Commercial and Government Entity code",
     icon: FileBadge2,
   },
   {
-    kind: "tile",
     label: "Customer Set",
     value: "DoD · IC · Federal",
     note: "Every branch of the U.S. military, OSD, and IC partners",
@@ -79,15 +61,6 @@ const FACTS: Fact[] = [
 ];
 
 export function QuickFacts() {
-  const feature = FACTS.find((f) => f.kind === "feature") as Extract<
-    Fact,
-    { kind: "feature" }
-  >;
-  const tiles = FACTS.filter((f) => f.kind === "tile") as Extract<
-    Fact,
-    { kind: "tile" }
-  >[];
-
   return (
     <section className="relative overflow-hidden border-t border-white/5 bg-[#07080b] py-24 lg:py-32">
       <div className="bg-grid-fine pointer-events-none absolute inset-0 opacity-25" />
@@ -116,99 +89,42 @@ export function QuickFacts() {
           </div>
         </div>
 
-        <div className="mt-14 grid gap-4 lg:grid-cols-12">
-          {/* Feature card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, margin: "-80px" }}
-            transition={{ duration: 0.55, ease }}
-            className="relative overflow-hidden rounded-2xl border border-[#d4ae5b]/30 bg-gradient-to-br from-[#0d1015] via-[#0a0c11] to-[#07080b] p-7 lg:col-span-5 lg:p-8"
-          >
-            <div
-              aria-hidden
-              className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-[#a3132a]/10 blur-3xl"
-            />
-            <div
-              aria-hidden
-              className="pointer-events-none absolute -bottom-32 -left-16 h-72 w-72 rounded-full bg-[#d4ae5b]/10 blur-3xl"
-            />
-            <div className="relative flex h-full flex-col">
+        <ul className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {FACTS.map((f, i) => (
+            <motion.li
+              key={f.label}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, margin: "-80px" }}
+              transition={{ duration: 0.45, ease, delay: i * 0.05 }}
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:border-[#d4ae5b]/30 hover:bg-[#d4ae5b]/[0.04] sm:p-7"
+            >
               <div className="flex items-center justify-between">
-                <div className="inline-flex items-center gap-2 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-[#d4ae5b]">
-                  <Calendar className="h-3.5 w-3.5" />
-                  {feature.caption}
-                </div>
-                <span className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] text-[#a8a39a]/70">
-                  Phase 01
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#d4ae5b]/30 bg-[#d4ae5b]/5 text-[#f0cc7a]">
+                  <f.icon className="h-4 w-4" />
+                </span>
+                <span className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-[#a8a39a]/70">
+                  0{i + 1}
                 </span>
               </div>
 
-              <div className="mt-8 flex items-baseline gap-3">
-                <div className="font-[var(--font-display)] text-[88px] font-black leading-none tracking-tight text-[#f0cc7a] sm:text-[112px]">
-                  <CountUp
-                    value={feature.count}
-                    suffix={feature.suffix ?? ""}
-                    prefix={feature.prefix ?? ""}
-                  />
-                </div>
-                <div className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.32em] text-[#d4ae5b]">
-                  {feature.label}
-                </div>
+              <div className="mt-6 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-[#d4ae5b]">
+                {f.label}
+              </div>
+              <div className="mt-2 font-[var(--font-tactical)] text-2xl font-extrabold tracking-tight text-[#f0cc7a] sm:text-[28px]">
+                {f.value}
+              </div>
+              <div className="mt-3 text-[12px] leading-snug text-[#a8a39a]">
+                {f.note}
               </div>
 
-              <div className="mt-6 h-px bg-gradient-to-r from-[#d4ae5b]/40 via-[#d4ae5b]/10 to-transparent" />
-
-              <p className="mt-6 max-w-sm text-sm leading-relaxed text-[#a8a39a]">
-                {feature.note}
-              </p>
-
-              <div className="mt-auto flex items-center gap-3 pt-8">
-                <span className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.32em] text-[#a8a39a]">
-                  {SITE.motto}
-                </span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Tile grid */}
-          <ul className="grid grid-cols-2 gap-3 lg:col-span-7 lg:grid-cols-2">
-            {tiles.map((t, i) => (
-              <motion.li
-                key={t.label}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, margin: "-80px" }}
-                transition={{ duration: 0.45, ease, delay: 0.05 + i * 0.05 }}
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-colors hover:border-[#d4ae5b]/30 hover:bg-[#d4ae5b]/[0.04] sm:p-6"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#d4ae5b]/30 bg-[#d4ae5b]/5 text-[#f0cc7a]">
-                    <t.icon className="h-4 w-4" />
-                  </span>
-                  <span className="font-[var(--font-mono)] text-[9px] uppercase tracking-[0.28em] text-[#a8a39a]/70">
-                    0{i + 2}
-                  </span>
-                </div>
-
-                <div className="mt-5 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-[#d4ae5b]">
-                  {t.label}
-                </div>
-                <div className="mt-2 font-[var(--font-tactical)] text-xl font-extrabold tracking-tight text-[#f5f4ef] sm:text-2xl">
-                  {t.value}
-                </div>
-                <div className="mt-2 text-[11px] leading-snug text-[#a8a39a]">
-                  {t.note}
-                </div>
-
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute inset-x-5 bottom-0 h-px origin-left scale-x-0 bg-gradient-to-r from-[#d4ae5b]/60 to-transparent transition-transform duration-500 group-hover:scale-x-100"
-                />
-              </motion.li>
-            ))}
-          </ul>
-        </div>
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-x-6 bottom-0 h-px origin-left scale-x-0 bg-gradient-to-r from-[#d4ae5b]/60 to-transparent transition-transform duration-500 group-hover:scale-x-100"
+              />
+            </motion.li>
+          ))}
+        </ul>
       </div>
     </section>
   );
