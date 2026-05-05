@@ -18,7 +18,7 @@ const STATS = [
 export function Hero() {
   return (
     <>
-      <section className="relative isolate flex min-h-[760px] flex-col overflow-hidden bg-[#07080b] lg:h-[100svh]">
+      <section className="relative isolate flex min-h-[760px] flex-col overflow-hidden bg-[#07080b] lg:h-[100svh] lg:min-h-[820px]">
         {/* Full-bleed signal mesh + gradient mask */}
         <div className="absolute inset-0">
           <HeroSignal />
@@ -47,7 +47,7 @@ export function Hero() {
         </div>
 
         {/* Top status bar */}
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-32 lg:px-10">
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-28 lg:px-10 lg:pt-24">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -115,7 +115,7 @@ export function Hero() {
         </div>
 
         {/* Stats strip — flush with bottom of viewport on desktop, with breathing room above */}
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-12 pb-8 lg:px-10 lg:pt-20 lg:pb-10">
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-10 pb-10 lg:px-10 lg:pt-12 lg:pb-14">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -124,9 +124,9 @@ export function Hero() {
           >
             {STATS.map((s, i) => (
               <Magnetic key={s.label} strength={8} tilt={3}>
-                <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#07080b]/65 px-5 py-4 backdrop-blur-md transition-colors hover:border-[#d4ae5b]/40 hover:bg-[#0d1015]/80">
+                <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#07080b]/65 px-4 py-3 backdrop-blur-md transition-colors hover:border-[#d4ae5b]/40 hover:bg-[#0d1015]/80 sm:px-5 sm:py-4">
                   <div className="flex items-baseline justify-between gap-3">
-                    <div className="font-[var(--font-display)] text-2xl font-black uppercase tracking-tight text-[#f0cc7a] sm:text-3xl">
+                    <div className="font-[var(--font-display)] text-xl font-black uppercase tracking-tight text-[#f0cc7a] sm:text-2xl lg:text-[26px]">
                       {s.n}
                     </div>
                     <div className="font-[var(--font-mono)] text-[9px] uppercase tracking-[0.22em] text-[#a8a39a]/70">
